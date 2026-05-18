@@ -1,6 +1,6 @@
 {
   "name": "psylife",
-  "description": "Architectural Intelligence for the digital frontier. Curating environments of permanence and atmospheric luxury.",
+  "description": "psylife: engineering focus in a chaotic world. architectural intelligence, flow protocols, and neural performance curation for high-fidelity living.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

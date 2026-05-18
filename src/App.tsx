@@ -56,14 +56,14 @@ const HomePage = () => (
       "we don't teach. we architect. by restructuring the environment of your attention, we create the space for effortless mastery.",
       [
         { 
-          label: "depth", 
-          val: "alpha",
+          label: "01", 
+          val: "stacked life",
           href: "https://b2006858-57c1-480a-9730-8e9f2057acb9.usrfiles.com/ugd/b20068_69360b15cda04e4db547209d89c113d3.pdf",
           img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg"
         },
-        { label: "resilience", val: "beta", img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg" },
-        { label: "velocity", val: "gamma", img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg" },
-        { label: "sync", val: "delta", img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg" }
+        { label: "02", val: "factorial thinking", img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg" },
+        { label: "03", val: "zero stack", img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg" },
+        { label: "04", val: "architecting ai", img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg" }
       ]
     )}
     {featureSection("the flow protocol", "uninterrupted.", "initiate session")}
