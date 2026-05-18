@@ -1,0 +1,8 @@
+{
+  "name": "psylife",
+  "description": "Architectural Intelligence for the digital frontier. Curating environments of permanence and atmospheric luxury.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
