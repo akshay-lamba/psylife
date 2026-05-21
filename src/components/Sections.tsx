@@ -172,26 +172,43 @@ export const splitSection = (num: string, label: string, title: string, desc: st
   </Section>
 );
 
-export const featureSection = (sub: string, title: string, btn: string) => (
+export const featureSection = (sub?: string, title?: string, btn?: string, videoUrl?: string) => (
   <Section className="matte-texture">
     <div className="relative">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5 }}
-        className="w-full aspect-[21/9] rounded-[40px] overflow-hidden border border-white/5 relative glass"
+        className="w-full aspect-video md:aspect-[21/9] rounded-[40px] overflow-hidden border border-white/5 relative glass"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center">
-          <span className="text-[10px] lowercase tracking-[1em] mb-12 opacity-30">{sub}</span>
-          <h2 className="text-7xl font-sans font-bold metallic-text tracking-tighter mb-8 italic lowercase">{title}</h2>
-          <motion.div
-            className="px-10 py-4 glass rounded-full cursor-pointer hover:bg-white/5 transition-all text-sm lowercase tracking-widest text-white/60"
-            whileHover={{ scale: 1.05 }}
+        {videoUrl ? (
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className={`absolute inset-0 w-full h-full object-cover grayscale contrast-125 transition-opacity duration-1000 ${(!sub && !title && !btn) ? 'opacity-100' : 'opacity-50'}`}
           >
-            {btn}
-          </motion.div>
-        </div>
+            <source src={videoUrl} type="video/mp4" />
+          </video>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
+        )}
+        
+        {(sub || title || btn) && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center z-10">
+            {sub && <span className="text-[10px] lowercase tracking-[1em] mb-12 opacity-30">{sub}</span>}
+            {title && <h2 className="text-4xl md:text-7xl font-sans font-bold metallic-text tracking-tighter mb-8 italic lowercase">{title}</h2>}
+            {btn && (
+              <motion.div
+                className="px-10 py-4 glass rounded-full cursor-pointer hover:bg-white/5 transition-all text-sm lowercase tracking-widest text-white/60"
+                whileHover={{ scale: 1.05 }}
+              >
+                {btn}
+              </motion.div>
+            )}
+          </div>
+        )}
       </motion.div>
     </div>
   </Section>

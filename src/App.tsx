@@ -66,7 +66,12 @@ const HomePage = () => (
         { label: "04", val: "architecting ai", img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg" }
       ]
     )}
-    {featureSection("the flow protocol", "uninterrupted.", "initiate session")}
+    {featureSection(
+      undefined, 
+      undefined, 
+      undefined,
+      "https://video.wixstatic.com/video/b20068_c8a1bb2770194605b05a34ced2c1de59/720p/mp4/file.mp4"
+    )}
   </>
 );
 
