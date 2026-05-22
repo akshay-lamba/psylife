@@ -56,28 +56,7 @@ const HomePage = () => (
       description="psylife: engineering focus in a chaotic world. architectural intelligence, flow protocols, and neural performance curation for high-fidelity living." 
       keywords="psylife, neural architecture, focus, flow state, attention engineering, family focus, cognitive optimization, deep focus, Epping Sydney, family foundations, learning mastery"
     />
-    <Hero />
-    {splitSection(
-      "01", "objective", "neural architecture",
-      "we don't teach. we architect. by restructuring the environment of your attention, we create the space for effortless mastery.",
-      [
-        { 
-          label: "01", 
-          val: "stacked life",
-          href: "https://b2006858-57c1-480a-9730-8e9f2057acb9.usrfiles.com/ugd/b20068_69360b15cda04e4db547209d89c113d3.pdf",
-          img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg"
-        },
-        { label: "02", val: "factorial thinking", img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg" },
-        { label: "03", val: "zero stack", img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg" },
-        { label: "04", val: "architecting ai", img: "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg" }
-      ]
-    )}
-    {featureSection(
-      undefined, 
-      undefined, 
-      undefined,
-      "https://video.wixstatic.com/video/b20068_c8a1bb2770194605b05a34ced2c1de59/720p/mp4/file.mp4"
-    )}
+    <Hero title="psylife" subtitle="architectural intelligence for the deep mind" />
   </>
 );
 
