@@ -10,6 +10,7 @@ import {
   ctaSection 
 } from "./components/Sections";
 import { Footer } from "./components/Footer";
+import { SEO } from "./components/SEO";
 
 const MouseGlow = () => {
   const mouseX = useMotionValue(0);
@@ -50,6 +51,11 @@ const ScrollToTop = () => {
 
 const HomePage = () => (
   <>
+    <SEO 
+      title="psylife | architectural intelligence for the deep mind" 
+      description="psylife: engineering focus in a chaotic world. architectural intelligence, flow protocols, and neural performance curation for high-fidelity living." 
+      keywords="psylife, neural architecture, focus, flow state, attention engineering, family focus, cognitive optimization, deep focus, Epping Sydney, family foundations, learning mastery"
+    />
     <Hero />
     {splitSection(
       "01", "objective", "neural architecture",
@@ -77,6 +83,11 @@ const HomePage = () => (
 
 const ParentPage = () => (
   <>
+    <SEO 
+      title="the parent protocol | psylife" 
+      description="guide the developing mind toward master focus. learn to build beautiful, friction-free environments to naturalise attention without fatigue." 
+      keywords="parent protocol, kids focus, attention training, family focus, cognitive parenting, child focus, Epping Sydney"
+    />
     <Hero title="the parent protocol" subtitle="stewarding focus | guiding growth" />
     {splitSection(
       "02", "guidance", "cognitive framing",
@@ -97,6 +108,11 @@ const ParentPage = () => (
 
 const ChildPage = () => (
   <>
+    <SEO 
+      title="child exploration | psylife" 
+      description="tactile and virtual environments designed for high-velocity child learning, creative exploration, play, and digital focus mastery." 
+      keywords="child exploration, creative play, youth focus, deep curiosity, focus development, tactile play, Epping Sydney"
+    />
     <Hero title="child exploration" subtitle="discovery | foundations | play" />
     {splitSection(
       "03", "exploration", "radical curiosity",
@@ -114,6 +130,11 @@ const ChildPage = () => (
 
 const ProductsPage = () => (
   <>
+    <SEO 
+      title="products & solutions | psylife" 
+      description="physical and digital attention anchors designed to ground consciousness in high-volatility environments." 
+      keywords="attention anchors, focus products, spatial design, cognitive hardware, study tools, Epping Sydney"
+    />
     <Hero images={["https://static.wixstatic.com/media/b20068_74d4970e99f04665803f715c82c91e6c~mv2.jpeg"]} />
     {splitSection(
       "04", "hardware", "tactile anchors",
@@ -134,6 +155,11 @@ const ProductsPage = () => (
 
 const LearningPage = () => (
   <>
+    <SEO 
+      title="learning modules & mastery | psylife" 
+      description="synthesis protocols, attention hardening, and temporal skew techniques to achieve peak cognitive endurance." 
+      keywords="cognitive training, focus guides, attention hardening, flow mastery, productivity learning, Epping Sydney"
+    />
     <Hero title="learning modules" subtitle="synthesis | protocol | mastery" />
     {listSection([
       { title: "visual synthesis", desc: "absorb complex systems through layered spatial visualization." },
@@ -146,6 +172,11 @@ const LearningPage = () => (
 
 const AboutPage = () => (
   <>
+    <SEO 
+      title="about us & genesis | psylife" 
+      description="the genesis of psylife systems. we build premium, architected environments to curate digital permanence and focus." 
+      keywords="psylife story, attention architecture, focus research, team alpha, Epping Sydney"
+    />
     <Hero title="about psylife" subtitle="engineering focused futures" />
     {splitSection(
       "05", "identity", "our genesis",
@@ -163,6 +194,11 @@ const AboutPage = () => (
 
 const CompliancePage = () => (
   <>
+    <SEO 
+      title="compliance & security standards | psylife" 
+      description="reviewed ethical protocols and privacy footprint data sovereignty encryption. secure and compliant attention design." 
+      keywords="data security, ethical AI, privacy policy, user compliance, data sovereignty, Epping Sydney"
+    />
     <Hero title="compliance" subtitle="standards | ethics | security" />
     {listSection([
       { title: "data integrity", desc: "your neural footprint is your own. we encrypt at the cognitive level." },
@@ -174,6 +210,11 @@ const CompliancePage = () => (
 
 const ContactPage = () => (
   <>
+    <SEO 
+      title="contact & direct link | psylife" 
+      description="direct transmission link for high-level inquiries and custom architectural consultations with psylife systems." 
+      keywords="contact psylife, focus consulting, custom neural design, contact sydney, Epping Sydney"
+    />
     <Hero title="contact us" subtitle="direct link | office | channel" />
     {splitSection(
       "06", "channel", "open link",
