@@ -17,7 +17,7 @@ export const SEO = ({
   ogImage = "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg"
 }: SEOProps) => {
   const location = useLocation();
-  const canonicalUrl = `https://psylife.office${location.pathname === "/" ? "" : location.pathname}`;
+  const canonicalUrl = `https://www.psylife.shop${location.pathname === "/" ? "" : location.pathname}`;
 
   useEffect(() => {
     // 1. Update document title

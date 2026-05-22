@@ -77,13 +77,15 @@ export const Navigation = () => {
         </ul>
 
         <div className="flex items-center gap-4">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden md:block px-6 py-2 bg-white/5 hover:bg-white/10 text-white text-[10px] lowercase tracking-widest rounded-full border border-white/10 transition-all backdrop-blur-md"
-          >
-            enter
-          </motion.button>
+          <Link to="/contact">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden md:block px-6 py-2 bg-white/5 hover:bg-white/10 text-white text-[10px] lowercase tracking-widest rounded-full border border-white/10 transition-all backdrop-blur-md cursor-pointer"
+            >
+              lets talk
+            </motion.button>
+          </Link>
 
           {/* Mobile Toggle */}
           <button 
@@ -118,9 +120,11 @@ export const Navigation = () => {
                 </li>
               ))}
               <li className="pt-4 border-t border-white/5">
-                <button className="w-full py-4 glass rounded-2xl text-[10px] lowercase tracking-[0.5em] text-white/60">
-                  enter session
-                </button>
+                <Link to="/contact" className="w-full block">
+                  <button className="w-full py-4 glass rounded-2xl text-[10px] lowercase tracking-[0.5em] text-white/60 cursor-pointer">
+                    lets talk
+                  </button>
+                </Link>
               </li>
             </ul>
           </motion.div>
