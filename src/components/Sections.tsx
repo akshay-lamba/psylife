@@ -18,8 +18,9 @@ export const Section = ({ children, id, className = "" }: SectionProps) => (
 
 const HERO_IMAGES = [
   "https://static.wixstatic.com/media/b20068_862b2dba3b5545eea41060bbed1eb668~mv2.jpeg",
-  "https://static.wixstatic.com/media/b20068_291fcbcc7c88413db00fa2d51e2dd7d2~mv2.jpeg",
-  "https://static.wixstatic.com/media/b20068_ebd7d6c695e34f0fa50e30c8cdb4d480~mv2.jpeg",
+  "https://static.wixstatic.com/media/b20068_fcbcbb260241418d94f1e11d828f9e7a~mv2.jpg",
+  "https://static.wixstatic.com/media/b20068_a2214479f41648ad8775b9666ff6e0b6~mv2.jpg",
+  "https://static.wixstatic.com/media/b20068_a5803972e8f24cfab0dc79cca5570d66~mv2.jpg",
   "https://static.wixstatic.com/media/b20068_85ca72b89c5d445fa42bfa5611a79eba~mv2.jpeg"
 ];
 
@@ -36,6 +37,16 @@ export const Hero = ({ title, subtitle, images = HERO_IMAGES }: { title?: string
 
   return (
     <Section className="matte-texture min-h-[75vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24">
+      {/* Subtle theme-color backlight glow (#a67c52 / var(--primary)) */}
+      <motion.div 
+        className="absolute w-[80vw] md:w-[55vw] aspect-[4/3] md:aspect-video rounded-[60px] bg-primary/10 blur-[100px] pointer-events-none z-0 mix-blend-screen"
+        animate={{
+          scale: isHovered ? 1.08 : 0.95,
+          opacity: isHovered ? 0.75 : 0.45,
+        }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      />
+
       <motion.div 
         className="relative w-[90vw] md:w-[65vw] aspect-[4/3] md:aspect-video z-10 mt-12 group cursor-crosshair"
         onMouseEnter={() => setIsHovered(true)}
