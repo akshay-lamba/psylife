@@ -129,7 +129,7 @@ const ParentPage = () => (
         className="max-w-4xl mx-auto flex flex-col relative z-10 pt-24 pb-16"
       >
         <div className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/15 bg-[#dfd5c8] flex flex-col">
-          {/* Ambient Video Hero Slide */}
+          {/* Ambient Video Hero Slide nested seamlessly */}
           <div className="w-full relative overflow-hidden">
             <video
               src="https://video.wixstatic.com/video/b20068_c8a1bb2770194605b05a34ced2c1de59/720p/mp4/file.mp4"
@@ -140,7 +140,7 @@ const ParentPage = () => (
               className="w-full h-auto block select-none pointer-events-none"
             />
             {/* Very soft bottom shadow at the bottom boundary */}
-            <div className="absolute bottom-0 inset-x-0 h-6 bg-gradient-to-t from-[#1b1613]/8 to-transparent pointer-events-none z-10" />
+            <div className="absolute bottom-0 inset-x-0 h-4 bg-gradient-to-t from-[#1b1613]/5 to-transparent pointer-events-none z-10" />
           </div>
 
           {PARENT_SLIDES.map((slide, index) => (
