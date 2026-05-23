@@ -17,11 +17,11 @@ export const Section = ({ children, id, className = "" }: SectionProps) => (
 );
 
 const HERO_IMAGES = [
-  "https://static.wixstatic.com/media/b20068_862b2dba3b5545eea41060bbed1eb668~mv2.jpeg",
-  "https://static.wixstatic.com/media/b20068_fcbcbb260241418d94f1e11d828f9e7a~mv2.jpg",
-  "https://static.wixstatic.com/media/b20068_a2214479f41648ad8775b9666ff6e0b6~mv2.jpg",
-  "https://static.wixstatic.com/media/b20068_a5803972e8f24cfab0dc79cca5570d66~mv2.jpg",
-  "https://static.wixstatic.com/media/b20068_85ca72b89c5d445fa42bfa5611a79eba~mv2.jpeg"
+  "https://static.wixstatic.com/media/b20068_af785ee72ca743b08b87890371caf1ef~mv2.jpeg",
+  "https://static.wixstatic.com/media/b20068_35e7268eb36c4d35b128afbb65d8043b~mv2.jpeg",
+  "https://static.wixstatic.com/media/b20068_85ca72b89c5d445fa42bfa5611a79eba~mv2.jpeg",
+  "https://static.wixstatic.com/media/b20068_9de72c643cdb486d8b6273d06c1ca81f~mv2.jpeg",
+  "https://static.wixstatic.com/media/b20068_6d5e49d0a4804384b63f33e1c9b0bdcb~mv2.jpeg"
 ];
 
 export const Hero = ({ title, subtitle, images = HERO_IMAGES }: { title?: string, subtitle?: string, images?: string[] }) => {
@@ -714,7 +714,7 @@ export const ctaSection = (title: string, desc: string, btn: string) => (
 
 // --- Youtube Video Section (Section 2) ---
 export const YoutubeSection = () => (
-  <Section className="bg-[#b0baa9] relative overflow-hidden py-12 md:py-16 border-t border-[#a67958]/12">
+  <Section className="bg-[#dfd5c8] relative overflow-hidden py-12 md:py-16 border-t border-[#a67958]/12">
     {/* Soft primary glow */}
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] md:w-[45vw] aspect-video rounded-full bg-primary/10 blur-[120px] pointer-events-none z-0" />
 

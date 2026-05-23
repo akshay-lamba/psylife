@@ -62,6 +62,44 @@ const HomePage = () => (
   </>
 );
 
+const PARENT_SLIDES = [
+  {
+    num: "01",
+    tag: "vision",
+    title: "the parent protocol: a better compass",
+    src: "https://static.wixstatic.com/media/b20068_df8efa95c19e4a69bf58e369bb5bb883~mv2.jpeg",
+    alt: "psylife - architectural intelligence for the deep mind / building a better compass"
+  },
+  {
+    num: "02",
+    tag: "realization",
+    title: "validating the realization of focus",
+    src: "https://static.wixstatic.com/media/b20068_6f5f2607a82243e8b09960ad58229e04~mv2.jpeg",
+    alt: "validating the realization - of cognitive attention curves"
+  },
+  {
+    num: "03",
+    tag: "future choice",
+    title: "a choice for your family's future",
+    src: "https://static.wixstatic.com/media/b20068_552c3057a58746ccbe5d839be8c29478~mv2.jpeg",
+    alt: "a choice for your family's future - heavy backpack or better compass"
+  },
+  {
+    num: "04",
+    tag: "architectures",
+    title: "comparing architectures: heavy backpack vs. the better compass",
+    src: "https://static.wixstatic.com/media/b20068_e73f0b909fa04bf5af7c271d500f71d5~mv2.jpeg",
+    alt: "the heavy backpack focuses on memory, the better compass focuses on evaluation"
+  },
+  {
+    num: "05",
+    tag: "attention environment",
+    title: "attention environment and spatial engineering",
+    src: "https://static.wixstatic.com/media/b20068_3195f8f57d8e4f6aa014ead1d5fd538c~mv2.jpeg",
+    alt: "we don't teach. we architect. environments designed for effortless mastery."
+  }
+];
+
 const ParentPage = () => (
   <>
     <SEO 
@@ -69,21 +107,70 @@ const ParentPage = () => (
       description="guide the developing mind toward master focus. learn to build beautiful, friction-free environments to naturalise attention without fatigue." 
       keywords="parent protocol, kids focus, attention training, family focus, cognitive parenting, child focus, Epping Sydney"
     />
-    <Hero title="the parent protocol" subtitle="stewarding focus | guiding growth" />
-    {splitSection(
-      "02", "guidance", "cognitive framing",
-      "learn to build environments that naturally foster focus in the developing mind without friction or fatigue.",
-      [
-        { label: "clarity", val: "prime" },
-        { label: "patience", val: "vibe" },
-        { label: "rhythm", val: "flow" },
-        { label: "safety", val: "core" }
-      ]
-    )}
-    {listSection([
-      { title: "spatial anchors", desc: "using physical space to trigger deep work states in children." },
-      { title: "feedback loops", desc: "building positive reinforcement systems for sustained attention." }
-    ])}
+    <div className="bg-[#dfd5c8] text-[#231e1a] min-h-screen relative overflow-hidden matte-texture py-12 md:py-20 px-4 md:px-8">
+      {/* Soft natural radial glows representing sunbeams & alignment */}
+      <div className="absolute top-[10%] left-[5%] w-[50vw] aspect-square rounded-full bg-[#a67958]/5 blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-[20%] right-[5%] w-[45vw] aspect-square rounded-full bg-[#50624d]/4 blur-[130px] pointer-events-none z-0" />
+
+      {/* Decorative Blueprint Lines representing structural compass alignment */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-20">
+        <svg viewBox="0 0 1000 1000" className="w-[120%] h-[120%] -translate-x-[10%] -translate-y-[10%] text-[#a67958]">
+          <circle cx="500" cy="500" r="450" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 3" />
+          <circle cx="500" cy="500" r="300" fill="none" stroke="currentColor" strokeWidth="0.5" />
+          <line x1="500" y1="50" x2="500" y2="950" stroke="currentColor" strokeWidth="0.5" strokeDasharray="5 5" />
+          <line x1="50" y1="500" x2="950" y2="500" stroke="currentColor" strokeWidth="0.5" strokeDasharray="5 5" />
+        </svg>
+      </div>
+
+      <div className="max-w-4xl mx-auto space-y-16 md:space-y-24 relative z-10 pb-16">
+        {PARENT_SLIDES.map((slide, index) => (
+          <motion.div
+            key={slide.num}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative flex justify-center items-center py-6 md:py-12"
+          >
+            {/* 3D Deep Ambient Floor Shadow beneath the image */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[85%] h-8 bg-[#231e1a]/15 rounded-full blur-[35px] pointer-events-none z-0 transform scale-x-[1.05]" />
+            
+            {/* Floating 3D Image Canvas, rotated gently in perspective with NO border framing */}
+            <div 
+              style={{
+                perspective: '1200px',
+                transformStyle: 'preserve-3d'
+              }}
+              className="relative z-10 w-full transition-all duration-700 ease-out"
+            >
+              <motion.div
+                whileHover={{ 
+                  rotateX: 0, 
+                  rotateY: 0,
+                  z: 15,
+                  scale: 1.015
+                }}
+                initial={{
+                  rotateX: index % 2 === 0 ? 3 : 2,
+                  rotateY: index % 2 === 0 ? -1.5 : 1.5,
+                  z: 0
+                }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="w-full h-auto select-none overflow-hidden rounded-[16px] md:rounded-[24px] shadow-[0_30px_70px_rgba(35,30,26,0.18),0_15px_30px_rgba(35,30,26,0.12)] bg-[#dfd5c8]"
+              >
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  className="w-full h-auto block object-contain pointer-events-none"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              </motion.div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
   </>
 );
 
@@ -227,6 +314,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/parent" element={<ParentPage />} />
+            <Route path="/parents" element={<ParentPage />} />
             <Route path="/child" element={<ChildPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/learning" element={<LearningPage />} />
