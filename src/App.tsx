@@ -130,14 +130,12 @@ const ParentPage = () => (
       >
         <div className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/15 bg-[#dfd5c8] flex flex-col">
           {/* Ambient Video Hero Slide nested seamlessly */}
-          <div className="w-full relative overflow-hidden">
-            <video
-              src="https://video.wixstatic.com/video/b20068_c8a1bb2770194605b05a34ced2c1de59/720p/mp4/file.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-auto block select-none pointer-events-none"
+          <div className="w-full aspect-video relative overflow-hidden bg-[#dfd5c8]">
+            <iframe
+              src="https://www.youtube.com/embed/lH4QkrgLuCI?autoplay=1&mute=1&loop=1&playlist=lH4QkrgLuCI&playsinline=1"
+              title="PsyLife Video"
+              className="absolute top-0 left-0 w-full h-full border-0 pointer-events-none scale-[1.02]"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             />
             {/* Very soft bottom shadow at the bottom boundary */}
             <div className="absolute bottom-0 inset-x-0 h-4 bg-gradient-to-t from-[#1b1613]/5 to-transparent pointer-events-none z-10" />
