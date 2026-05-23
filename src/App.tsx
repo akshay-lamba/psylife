@@ -122,54 +122,48 @@ const ParentPage = () => (
         </svg>
       </div>
 
-      <div className="max-w-4xl mx-auto space-y-16 md:space-y-24 relative z-10 pb-16">
-        {PARENT_SLIDES.map((slide, index) => (
-          <motion.div
-            key={slide.num}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex justify-center items-center py-6 md:py-12"
-          >
-            {/* 3D Deep Ambient Floor Shadow beneath the image */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[85%] h-8 bg-[#231e1a]/15 rounded-full blur-[35px] pointer-events-none z-0 transform scale-x-[1.05]" />
-            
-            {/* Floating 3D Image Canvas, rotated gently in perspective with NO border framing */}
+      <motion.div 
+        initial={{ opacity: 0, y: 25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-4xl mx-auto flex flex-col relative z-10 pt-24 pb-16"
+      >
+        <div className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/15 bg-[#dfd5c8] flex flex-col">
+          {/* Ambient Video Hero Slide */}
+          <div className="w-full relative overflow-hidden">
+            <video
+              src="https://video.wixstatic.com/video/b20068_c8a1bb2770194605b05a34ced2c1de59/720p/mp4/file.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-auto block select-none pointer-events-none"
+            />
+            {/* Very soft bottom shadow at the bottom boundary */}
+            <div className="absolute bottom-0 inset-x-0 h-6 bg-gradient-to-t from-[#1b1613]/8 to-transparent pointer-events-none z-10" />
+          </div>
+
+          {PARENT_SLIDES.map((slide, index) => (
             <div 
-              style={{
-                perspective: '1200px',
-                transformStyle: 'preserve-3d'
-              }}
-              className="relative z-10 w-full transition-all duration-700 ease-out"
+              key={slide.num} 
+              className="w-full relative overflow-hidden -mt-[1px]"
             >
-              <motion.div
-                whileHover={{ 
-                  rotateX: 0, 
-                  rotateY: 0,
-                  z: 15,
-                  scale: 1.015
-                }}
-                initial={{
-                  rotateX: index % 2 === 0 ? 3 : 2,
-                  rotateY: index % 2 === 0 ? -1.5 : 1.5,
-                  z: 0
-                }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="w-full h-auto select-none overflow-hidden rounded-[16px] md:rounded-[24px] shadow-[0_30px_70px_rgba(35,30,26,0.18),0_15px_30px_rgba(35,30,26,0.12)] bg-[#dfd5c8]"
-              >
-                <img
-                  src={slide.src}
-                  alt={slide.alt}
-                  className="w-full h-auto block object-contain pointer-events-none"
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                />
-              </motion.div>
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                className="w-full h-auto block select-none pointer-events-none"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+              />
+              
+              {/* Very soft bottom shadow at the bottom of intermediate slides to suggest depth */}
+              {index < PARENT_SLIDES.length - 1 && (
+                <div className="absolute bottom-0 inset-x-0 h-4 bg-gradient-to-t from-[#1b1613]/5 to-transparent pointer-events-none z-10" />
+              )}
             </div>
-          </motion.div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </motion.div>
     </div>
   </>
 );
