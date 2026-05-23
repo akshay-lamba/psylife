@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://psylife.office/sitemap.xml
+Sitemap: https://www.psylife.shop/sitemap.xml
