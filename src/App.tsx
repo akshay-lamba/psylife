@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Navigation } from "./components/Navigation";
 import { 
   Hero, 
@@ -166,50 +167,230 @@ const ParentPage = () => (
   </>
 );
 
-const ChildPage = () => (
-  <>
-    <SEO 
-      title="child exploration | psylife.shop" 
-      description="tactile and virtual environments designed for high-velocity child learning, creative exploration, play, and digital focus mastery." 
-      keywords="child exploration, creative play, youth focus, deep curiosity, focus development, tactile play, Epping Sydney"
-    />
-    <Hero title="child exploration" subtitle="discovery | foundations | play" />
-    {splitSection(
-      "03", "exploration", "radical curiosity",
-      "environments designed for high-velocity learning through tactile immersion and digital mastery.",
-      [
-        { label: "speed", val: "fast" },
-        { label: "play", val: "wild" },
-        { label: "intel", val: "deep" },
-        { label: "sync", val: "zero" }
-      ]
-    )}
-    {featureSection("the catalyst", "ignite potential.", "start journey")}
-  </>
-);
+const CHILD_SLIDES = [
+  "https://static.wixstatic.com/media/b20068_bfac881d783e4513b07f9402b4bd48ef~mv2.jpg",
+  "https://static.wixstatic.com/media/b20068_b7fc49e10c794d3fa00df00e234e5f33~mv2.jpg",
+  "https://static.wixstatic.com/media/b20068_681eecf7a90048acb69aa538c6674558~mv2.jpg",
+  "https://static.wixstatic.com/media/b20068_23434e57530c4266a70c439610bf7be6~mv2.jpg",
+  "https://static.wixstatic.com/media/b20068_e31ca203d246416fb751990cb651c4ee~mv2.jpg"
+];
+
+const ChildPage = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % CHILD_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isHovered]);
+
+  const prevSlide = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + CHILD_SLIDES.length) % CHILD_SLIDES.length);
+  };
+
+  const nextSlide = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % CHILD_SLIDES.length);
+  };
+
+  return (
+    <>
+      <SEO 
+        title="child exploration | psylife.shop" 
+        description="tactile and virtual environments designed for high-velocity child learning, creative exploration, play, and digital focus mastery." 
+        keywords="child exploration, creative play, youth focus, deep curiosity, focus development, tactile play, Epping Sydney"
+      />
+      <div className="bg-[#dfd5c8] text-[#231e1a] min-h-screen relative overflow-hidden matte-texture py-12 md:py-20 px-4 md:px-8">
+        {/* Soft natural radial glows representing sunbeams & alignment */}
+        <div className="absolute top-[10%] left-[5%] w-[50vw] aspect-square rounded-full bg-[#a67958]/5 blur-[140px] pointer-events-none z-0" />
+        <div className="absolute bottom-[20%] right-[3%] w-[45vw] aspect-square rounded-full bg-[#50624d]/4 blur-[130px] pointer-events-none z-0" />
+
+        {/* Decorative Blueprint Lines representing structural compass alignment */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-20">
+          <svg viewBox="0 0 1000 1000" className="w-[120%] h-[120%] -translate-x-[10%] -translate-y-[10%] text-[#a67958]">
+            <circle cx="500" cy="500" r="450" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 3" />
+            <circle cx="500" cy="500" r="300" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            <line x1="500" y1="50" x2="500" y2="950" stroke="currentColor" strokeWidth="0.5" strokeDasharray="5 5" />
+            <line x1="50" y1="500" x2="950" y2="500" stroke="currentColor" strokeWidth="0.5" strokeDasharray="5 5" />
+          </svg>
+        </div>
+
+        <div className="max-w-4xl mx-auto relative z-10 pt-24 pb-16 flex flex-col items-center">
+          {/* Subtle Heading aligned with the aesthetic layout */}
+          <div className="text-center mb-10 z-10">
+            <h1 className="text-4xl md:text-5xl font-sans font-bold text-[#231e1a] lowercase mb-3 tracking-tight">child exploration</h1>
+            <p className="text-[11px] font-medium tracking-[0.6em] lowercase text-on-background/40">discovery | foundations | play</p>
+          </div>
+
+          {/* Interactive Responsive Carousel Container with hover scale and subtle primary background glow */}
+          <div className="relative w-full z-10 group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+            {/* Subtle backlight glow */}
+            <motion.div 
+              className="absolute inset-0 rounded-[2rem] bg-primary/10 blur-[60px] pointer-events-none z-0 mix-blend-screen"
+              animate={{
+                scale: isHovered ? 1.05 : 0.96,
+                opacity: isHovered ? 0.6 : 0.35,
+              }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            />
+
+            {/* Our brown frame */}
+            <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-2xl md:rounded-[2rem] border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
+              <div className="w-full h-full relative overflow-hidden flex-1">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, scale: 1.015 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="absolute inset-0 w-full h-full"
+                  >
+                    {/* Blurred Backdrop */}
+                    <img 
+                      src={CHILD_SLIDES[currentIndex]} 
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-20 grayscale"
+                      referrerPolicy="no-referrer"
+                    />
+                    {/* Main Image */}
+                    <img 
+                      src={CHILD_SLIDES[currentIndex]} 
+                      alt={`child exploration workspace - slide ${currentIndex + 1}`}
+                      className="w-full h-full object-contain relative z-10 select-none block"
+                      referrerPolicy="no-referrer"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Left Arrow */}
+                <button
+                  type="button"
+                  onClick={prevSlide}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-25 w-10 h-10 rounded-full border border-[#a67958]/15 bg-[#ece6dd]/75 backdrop-blur flex items-center justify-center text-[#a67958]/70 hover:text-[#a67958] hover:bg-[#ece6dd] hover:scale-105 transition-all outline-none focus:ring-1 focus:ring-[#a67958]/30"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft size={20} strokeWidth={2.5} />
+                </button>
+
+                {/* Right Arrow */}
+                <button
+                  type="button"
+                  onClick={nextSlide}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-25 w-10 h-10 rounded-full border border-[#a67958]/15 bg-[#ece6dd]/75 backdrop-blur flex items-center justify-center text-[#a67958]/70 hover:text-[#a67958] hover:bg-[#ece6dd] hover:scale-105 transition-all outline-none focus:ring-1 focus:ring-[#a67958]/30"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight size={20} strokeWidth={2.5} />
+                </button>
+
+                {/* Top Rank Badge */}
+                <div className="absolute top-6 right-6 z-25 font-mono text-[10px] tracking-widest text-[#a67958] font-semibold bg-[#ece6dd]/75 backdrop-blur px-3 py-1 rounded-full border border-[#a67958]/15 select-none text-center">
+                  0{currentIndex + 1} / 0{CHILD_SLIDES.length}
+                </div>
+
+                {/* Bottom Dot Bars */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-25">
+                  {CHILD_SLIDES.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentIndex(i);
+                      }}
+                      className={`h-1.5 rounded-full transition-all duration-500 outline-none ${
+                        currentIndex === i ? 'w-8 bg-[#a67958]' : 'w-2.5 bg-[#a67958]/25 hover:bg-[#a67958]/60'
+                      }`}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Thin space separated section wrapper */}
+          <div className="h-16 md:h-24 w-full" />
+
+          {/* Section 2 - Video Introduction */}
+          <div className="text-center mb-10 z-10 w-full">
+            <h2 className="text-3xl md:text-4xl font-sans font-bold text-[#231e1a] lowercase mb-3 tracking-tight">tactile systems & spatial play</h2>
+            <p className="text-[11px] font-medium tracking-[0.5em] lowercase text-on-background/40">cognitive training | environment design</p>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/15 bg-[#dfd5c8] aspect-video relative z-10"
+          >
+            <iframe
+              src="https://www.youtube.com/embed/qU0OYPNC5qE?autoplay=1&mute=1&loop=1&playlist=qU0OYPNC5qE&playsinline=1"
+              title="PsyLife Exploration Video"
+              className="absolute top-0 left-0 w-full h-full border-0 scale-[1.02]"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            />
+            {/* Very soft bottom shadow at the bottom boundary */}
+            <div className="absolute bottom-0 inset-x-0 h-4 bg-gradient-to-t from-[#1b1613]/5 to-transparent pointer-events-none z-10" />
+          </motion.div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 const ProductsPage = () => (
   <>
     <SEO 
-      title="products & solutions | psylife.shop" 
+      title="products & solutions | psylife" 
       description="physical and digital attention anchors designed to ground consciousness in high-volatility environments." 
       keywords="attention anchors, focus products, spatial design, cognitive hardware, study tools, Epping Sydney"
     />
-    <Hero images={["https://static.wixstatic.com/media/b20068_74d4970e99f04665803f715c82c91e6c~mv2.jpeg"]} />
-    {splitSection(
-      "04", "hardware", "tactile anchors",
-      "physical objects designed to ground the consciousness in environments of high volatility.",
-      [
-        { label: "weight", val: "solid" },
-        { label: "texture", val: "matte" },
-        { label: "form", val: "pure" },
-        { label: "use", val: "daily" }
-      ]
-    )}
-    {listSection([
-      { title: "neural desk", desc: "an workspace that adapts to your current level of cognitive load." },
-      { title: "focus lens", desc: "digital interfaces that filter noise at the source." }
-    ])}
+    <div className="bg-[#dfd5c8] text-[#231e1a] min-h-screen relative overflow-hidden matte-texture py-12 md:py-20 px-4 md:px-8">
+      {/* Soft natural radial glows */}
+      <div className="absolute top-[10%] left-[5%] w-[50vw] aspect-square rounded-full bg-[#a67958]/5 blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-[20%] right-[3%] w-[45vw] aspect-square rounded-full bg-[#50624d]/4 blur-[130px] pointer-events-none z-0" />
+
+      {/* Decorative Blueprint Lines representing structural compass alignment */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-20">
+        <svg viewBox="0 0 1000 1000" className="w-[120%] h-[120%] -translate-x-[10%] -translate-y-[10%] text-[#a67958]">
+          <circle cx="500" cy="500" r="450" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 3" />
+          <circle cx="500" cy="500" r="300" fill="none" stroke="currentColor" strokeWidth="0.5" />
+          <line x1="500" y1="50" x2="500" y2="950" stroke="currentColor" strokeWidth="0.5" strokeDasharray="5 5" />
+          <line x1="50" y1="500" x2="950" y2="500" stroke="currentColor" strokeWidth="0.5" strokeDasharray="5 5" />
+        </svg>
+      </div>
+
+      <div className="max-w-4xl mx-auto relative z-10 pt-24 pb-16 flex flex-col items-center">
+        {/* Subtle Heading */}
+        <div className="text-center mb-10 z-10">
+          <h1 className="text-4xl md:text-5xl font-sans font-bold text-[#231e1a] lowercase mb-3 tracking-tight">products</h1>
+          <p className="text-[11px] font-medium tracking-[0.6em] lowercase text-on-background/40">attention | anchors | design</p>
+        </div>
+
+        {/* Ambient Video Frame */}
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/15 bg-[#dfd5c8] aspect-video relative z-10"
+        >
+          <iframe
+            src="https://www.youtube.com/embed/ctx0uUiB2iE?autoplay=1&mute=1&loop=1&playlist=ctx0uUiB2iE&playsinline=1"
+            title="PsyLife Products Video"
+            className="absolute top-0 left-0 w-full h-full border-0 scale-[1.02]"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          />
+          {/* Very soft bottom shadow at the bottom boundary */}
+          <div className="absolute bottom-0 inset-x-0 h-4 bg-gradient-to-t from-[#1b1613]/5 to-transparent pointer-events-none z-10" />
+        </motion.div>
+      </div>
+    </div>
   </>
 );
 
