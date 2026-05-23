@@ -1,6 +1,6 @@
 {
-  "name": "psylife",
-  "description": "psylife: engineering focus in a chaotic world. architectural intelligence, flow protocols, and neural performance curation for high-fidelity living.",
+  "name": "psylife.shop",
+  "description": "psylife.shop: Family | Fun | Foundations. Engineering focus, child exploration, tactile intelligence, and family foundations.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

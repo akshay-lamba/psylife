@@ -7,7 +7,8 @@ import {
   splitSection, 
   featureSection, 
   listSection, 
-  ctaSection 
+  ctaSection,
+  YoutubeSection
 } from "./components/Sections";
 import { Footer } from "./components/Footer";
 import { SEO } from "./components/SEO";
@@ -52,18 +53,19 @@ const ScrollToTop = () => {
 const HomePage = () => (
   <>
     <SEO 
-      title="psylife | architectural intelligence for the deep mind" 
-      description="psylife: engineering focus in a chaotic world. architectural intelligence, flow protocols, and neural performance curation for high-fidelity living." 
-      keywords="psylife, neural architecture, focus, flow state, attention engineering, family focus, cognitive optimization, deep focus, Epping Sydney, family foundations, learning mastery"
+      title="psylife.shop" 
+      description="psylife.shop: Family | Fun | Foundations. Engineering family focus and interactive spatial systems." 
+      keywords="psylife.shop, psylife, Family | Fun | Foundations, neural architecture, focus, Epping Sydney, family foundations, learning mastery"
     />
-    <Hero title="psylife" subtitle="architectural intelligence for the deep mind" />
+    <Hero title="psylife.shop" subtitle="Family | Fun | Foundations" />
+    <YoutubeSection />
   </>
 );
 
 const ParentPage = () => (
   <>
     <SEO 
-      title="the parent protocol | psylife" 
+      title="the parent protocol | psylife.shop" 
       description="guide the developing mind toward master focus. learn to build beautiful, friction-free environments to naturalise attention without fatigue." 
       keywords="parent protocol, kids focus, attention training, family focus, cognitive parenting, child focus, Epping Sydney"
     />
@@ -88,7 +90,7 @@ const ParentPage = () => (
 const ChildPage = () => (
   <>
     <SEO 
-      title="child exploration | psylife" 
+      title="child exploration | psylife.shop" 
       description="tactile and virtual environments designed for high-velocity child learning, creative exploration, play, and digital focus mastery." 
       keywords="child exploration, creative play, youth focus, deep curiosity, focus development, tactile play, Epping Sydney"
     />
@@ -110,7 +112,7 @@ const ChildPage = () => (
 const ProductsPage = () => (
   <>
     <SEO 
-      title="products & solutions | psylife" 
+      title="products & solutions | psylife.shop" 
       description="physical and digital attention anchors designed to ground consciousness in high-volatility environments." 
       keywords="attention anchors, focus products, spatial design, cognitive hardware, study tools, Epping Sydney"
     />
@@ -135,7 +137,7 @@ const ProductsPage = () => (
 const LearningPage = () => (
   <>
     <SEO 
-      title="learning modules & mastery | psylife" 
+      title="learning modules & mastery | psylife.shop" 
       description="synthesis protocols, attention hardening, and temporal skew techniques to achieve peak cognitive endurance." 
       keywords="cognitive training, focus guides, attention hardening, flow mastery, productivity learning, Epping Sydney"
     />
@@ -152,8 +154,8 @@ const LearningPage = () => (
 const AboutPage = () => (
   <>
     <SEO 
-      title="about us & genesis | psylife" 
-      description="the genesis of psylife systems. we build premium, architected environments to curate digital permanence and focus." 
+      title="about us & genesis | psylife.shop" 
+      description="the genesis of psylife.shop. we build premium, architected environments to curate digital permanence and focus." 
       keywords="psylife story, attention architecture, focus research, team alpha, Epping Sydney"
     />
     <Hero title="about psylife" subtitle="engineering focused futures" />
@@ -174,7 +176,7 @@ const AboutPage = () => (
 const CompliancePage = () => (
   <>
     <SEO 
-      title="compliance & security standards | psylife" 
+      title="compliance & security standards | psylife.shop" 
       description="reviewed ethical protocols and privacy footprint data sovereignty encryption. secure and compliant attention design." 
       keywords="data security, ethical AI, privacy policy, user compliance, data sovereignty, Epping Sydney"
     />
@@ -190,8 +192,8 @@ const CompliancePage = () => (
 const ContactPage = () => (
   <>
     <SEO 
-      title="contact & direct link | psylife" 
-      description="direct transmission link for high-level inquiries and custom architectural consultations with psylife systems." 
+      title="contact & direct link | psylife.shop" 
+      description="direct transmission link for high-level inquiries and custom architectural consultations with psylife.shop." 
       keywords="contact psylife, focus consulting, custom neural design, contact sydney, Epping Sydney"
     />
     <Hero title="contact us" subtitle="direct link | office | channel" />
@@ -213,7 +215,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="bg-background text-on-background selection:bg-primary selection:text-white overflow-x-hidden relative min-h-screen">
+      <div className="bg-background text-on-background selection:bg-primary selection:text-[#ece6dd] overflow-x-hidden relative min-h-screen">
         <MouseGlow />
         
         {/* Texture mask */}

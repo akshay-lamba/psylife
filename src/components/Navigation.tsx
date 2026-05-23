@@ -33,11 +33,11 @@ export const Navigation = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl transition-all duration-500 rounded-[2rem] border border-white/5 px-6 md:px-12 ${
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl transition-all duration-500 rounded-[2rem] border border-[#a67958]/20 px-6 md:px-12 ${
         isScrolled ? "py-2" : "py-4"
       }`}
       style={{
-        background: 'rgba(8, 7, 5, 0.95)',
+        background: 'rgba(37, 32, 29, 0.94)',
         backdropFilter: 'blur(20px)'
       }}
     >
@@ -67,7 +67,7 @@ export const Navigation = () => {
               <Link
                 to={item.href}
                 className={`text-[10px] font-medium tracking-[0.3em] lowercase transition-colors duration-300 ${
-                  location.pathname === item.href ? "text-primary" : "text-white/60 hover:text-primary"
+                  location.pathname === item.href ? "text-[#a67958] font-semibold" : "text-[#ebe6df]/60 hover:text-[#a67958]"
                 }`}
               >
                 {item.label}
@@ -81,7 +81,7 @@ export const Navigation = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="hidden md:block px-6 py-2 bg-white/5 hover:bg-white/10 text-white text-[10px] lowercase tracking-widest rounded-full border border-white/10 transition-all backdrop-blur-md cursor-pointer"
+              className="hidden md:block px-6 py-2 bg-[#ebe6df]/10 hover:bg-[#ebe6df]/20 text-[#ebe6df] text-[10px] lowercase tracking-widest rounded-full border border-[#a67958]/15 transition-all backdrop-blur-md cursor-pointer"
             >
               lets talk
             </motion.button>
@@ -89,7 +89,7 @@ export const Navigation = () => {
 
           {/* Mobile Toggle */}
           <button 
-            className="md:hidden p-2 text-white/60 hover:text-white transition-colors"
+            className="md:hidden p-2 text-[#ebe6df]/60 hover:text-[#ebe6df] transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -106,22 +106,22 @@ export const Navigation = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden overflow-hidden"
           >
-            <ul className="flex flex-col gap-6 py-8 border-t border-white/5 mt-4">
+            <ul className="flex flex-col gap-6 py-8 border-t border-[#a67958]/15 mt-4">
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
                   <Link
                     to={item.href}
                     className={`text-[11px] font-medium tracking-[0.4em] lowercase block ${
-                      location.pathname === item.href ? "text-primary" : "text-white/60 whitespace-nowrap"
+                      location.pathname === item.href ? "text-[#a67958]" : "text-[#ebe6df]/60 whitespace-nowrap"
                     }`}
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
-              <li className="pt-4 border-t border-white/5">
+              <li className="pt-4 border-t border-[#a67958]/15">
                 <Link to="/contact" className="w-full block">
-                  <button className="w-full py-4 glass rounded-2xl text-[10px] lowercase tracking-[0.5em] text-white/60 cursor-pointer">
+                  <button className="w-full py-4 bg-[#ebe6df]/10 hover:bg-[#ebe6df]/20 rounded-2xl text-[10px] lowercase tracking-[0.5em] text-[#ebe6df]/70 cursor-pointer">
                     lets talk
                   </button>
                 </Link>

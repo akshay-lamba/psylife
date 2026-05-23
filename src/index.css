@@ -2,13 +2,13 @@
 
 @layer base {
   :root {
-    --background: #080705;
-    --on-background: #ffffff;
-    --primary: #a67c52;
-    --on-primary: #1a1510;
-    --surface: rgba(40, 30, 20, 0.05);
-    --surface-border: rgba(166, 124, 82, 0.1);
-    --accent: #8c6a45;
+    --background: #ece6dd; /* Elegant warm hand-woven raw linen/canvas sand - strictly no harsh white */
+    --on-background: #231e1a; /* Deep organic cedar-charcoal ink from hand sketches */
+    --primary: #a67958; /* Rich terracota copper clay from the alignment diagrams and compass curves */
+    --on-primary: #ece6dd; /* Warm flax flour background for inverse text contrasts */
+    --surface: rgba(43, 37, 33, 0.04); /* Soft translucent earthy clay-dust highlights */
+    --surface-border: rgba(148, 144, 137, 0.22); /* Matte silver-charcoal outline borders */
+    --accent: #50624d; /* Organic forest pine-moss/sage green from the woodland backdrop and compass */
   }
 
   body {
@@ -21,7 +21,7 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Inter", sans-serif; /* Simplified branding to sans */
+  --font-serif: "Inter", sans-serif;
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
   
   --color-primary: var(--primary);
@@ -34,48 +34,46 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&display=swap');
 
-/* Matte Texture */
+/* Matte Texture of Hemp Canvas */
 .matte-texture {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
-/* Glassmorphism / Acrylic Blur */
+/* Glassmorphism / Acrylic Blur (Tactile silver-beige clay glass finish, strictly no pure white) */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(235, 230, 222, 0.55);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(148, 144, 137, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(43, 37, 33, 0.03);
 }
 
 .liquid-glass {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  background: linear-gradient(135deg, rgba(235, 230, 222, 0.75) 0%, rgba(215, 210, 201, 0.45) 100%);
   backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(148, 144, 137, 0.22);
 }
 
-/* 3D Depth Card */
+/* 3D Depth Card with organic timber-shadowing */
 .depth-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 20px 20px 60px #030303, -20px -20px 60px #070707;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 8px 8px 24px rgba(43, 37, 33, 0.04), -8px -8px 24px rgba(253, 252, 250, 0.55);
 }
 
-/* Metallic Text (Bronze) */
+/* Metallic Text (Earthy Bronze & Copper Terra Ink) */
 .metallic-text {
-  background: linear-gradient(135deg, #fdfaf5 0%, #a67c52 50%, #5d4037 100%);
+  background: linear-gradient(135deg, #1f1a17 0%, #a67958 50%, #523a27 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 /* Soft Glow */
 .glow-primary {
-  filter: drop-shadow(0 0 15px rgba(197, 160, 117, 0.3));
+  filter: drop-shadow(0 0 15px rgba(175, 131, 91, 0.25));
 }
 
-.selection:bg-primary/20 {
-  ::selection {
-    background: rgba(197, 160, 117, 0.2);
-    color: var(--primary);
-  }
+::selection {
+  background: rgba(175, 131, 91, 0.15);
+  color: #af835b;
 }
 
