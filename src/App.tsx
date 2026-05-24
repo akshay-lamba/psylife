@@ -129,9 +129,9 @@ const ParentPage = () => (
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         className="max-w-4xl mx-auto flex flex-col relative z-10 pt-24 pb-16"
       >
-        <div className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/15 bg-[#dfd5c8] flex flex-col">
+        <div className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/35 bg-[#ece6dd] flex flex-col">
           {/* Ambient Video Hero Slide nested seamlessly */}
-          <div className="w-full aspect-video relative overflow-hidden bg-[#dfd5c8]">
+          <div className="w-full aspect-video relative overflow-hidden bg-[#ece6dd]">
             <iframe
               src="https://www.youtube.com/embed/lH4QkrgLuCI?autoplay=1&mute=1&loop=1&playlist=lH4QkrgLuCI&playsinline=1"
               title="PsyLife Video"
@@ -389,7 +389,7 @@ const ChildPage = () => {
                     <img 
                       src={CHILD_SLIDES[currentIndex]} 
                       alt={`child exploration workspace - slide ${currentIndex + 1}`}
-                      className="w-full h-full object-contain relative z-10 select-none block"
+                      className="w-full h-full object-cover relative z-10 select-none block"
                       referrerPolicy="no-referrer"
                     />
                   </motion.div>
@@ -449,7 +449,7 @@ const ChildPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/15 bg-[#dfd5c8] aspect-video relative z-10"
+            className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/35 bg-[#ece6dd] aspect-video relative z-10"
           >
             <iframe
               src="https://www.youtube.com/embed/qU0OYPNC5qE?autoplay=1&mute=1&loop=1&playlist=qU0OYPNC5qE&playsinline=1"
@@ -502,29 +502,111 @@ const ProductsPage = () => (
         </svg>
       </div>
 
-      <div className="max-w-4xl mx-auto relative z-10 pt-24 pb-16 flex flex-col items-center">
-        {/* Subtle Heading */}
-        <div className="text-center mb-10 z-10">
-          <h1 className="text-4xl md:text-5xl font-sans font-bold text-[#231e1a] lowercase mb-3 tracking-tight">products</h1>
-          <p className="text-[11px] font-medium tracking-[0.6em] lowercase text-on-background/40">attention | anchors | design</p>
-        </div>
-
-        {/* Ambient Video Frame */}
+      <div className="max-w-4xl mx-auto relative z-10 pt-24 pb-8 flex flex-col items-center">
+        {/* Dynamic Image Hero Frame with no text as requested */}
         <motion.div 
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/15 bg-[#dfd5c8] aspect-video relative z-10"
+          className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] aspect-[4/3] md:aspect-[16/10] relative z-10"
         >
-          <iframe
-            src="https://www.youtube.com/embed/ctx0uUiB2iE?autoplay=1&mute=1&loop=1&playlist=ctx0uUiB2iE&playsinline=1"
-            title="PsyLife Products Video"
-            className="absolute top-0 left-0 w-full h-full border-0 scale-[1.02]"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          {/* Blurred Backdrop for seamless look when aspect ratios don't match */}
+          <img 
+            src="https://static.wixstatic.com/media/b20068_b6a3187a24e94e4abca9140398fabdd1~mv2.jpeg" 
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-20 grayscale"
+            referrerPolicy="no-referrer"
+          />
+          
+          <img 
+            src="https://static.wixstatic.com/media/b20068_b6a3187a24e94e4abca9140398fabdd1~mv2.jpeg" 
+            alt="psylife products"
+            className="w-full h-full object-cover relative z-10 select-none block"
+            referrerPolicy="no-referrer"
           />
           {/* Very soft bottom shadow at the bottom boundary */}
           <div className="absolute bottom-0 inset-x-0 h-4 bg-gradient-to-t from-[#1b1613]/5 to-transparent pointer-events-none z-10" />
         </motion.div>
+      </div>
+
+      {/* Section 2 - Product slides (3 cards horizontally) */}
+      <div className="w-full max-w-6xl mx-auto relative z-10 py-12 md:py-16">
+        <div className="text-center mb-10 md:mb-14">
+          <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#a67958] mb-1.5 font-bold">curated offerings</p>
+          <h2 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">architectural focus tiers</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
+          {[
+            {
+              tier: "The Curious Tier",
+              tag: "Digital Product",
+              img: "https://static.wixstatic.com/media/b20068_d6986a7cf7b64fdb81501ab320d735b7~mv2.jpeg",
+              desc: "integrated digital synthesis protocol interfaces and real-time temporal calibration guides crafted to initiate absolute cognitive alignment."
+            },
+            {
+              tier: "The Committed Tier",
+              tag: "Physical Product",
+              img: "https://static.wixstatic.com/media/b20068_8cbe99385f5348b1911ae0a4fbc9738f~mv2.jpeg",
+              desc: "tactile spatial dividers and high-density design containers engineered to establish physical permanence and anchor active attention loops."
+            },
+            {
+              tier: "The Creator Tier",
+              tag: "Immersive Product",
+              img: "https://static.wixstatic.com/media/b20068_ae5d7cd9b0ac43f2b53fe3fe54ab0971~mv2.jpeg",
+              desc: "comprehensive spatial environment parameters, room acoustics modeling, responsive tactile controllers, and ultimate sensory filter stacks."
+            }
+          ].map((prod, idx) => (
+            <motion.div
+              key={prod.tier}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col bg-[#ece6dd] rounded-[1.8rem] border border-[#a67958]/25 overflow-hidden shadow-[0_15px_35px_rgba(27,22,19,0.06)] hover:shadow-[0_25px_50px_rgba(166,121,88,0.12)] transition-all duration-500 group"
+            >
+              {/* Image Frame */}
+              <div className="aspect-[4/3] w-full overflow-hidden bg-[#dfd5c8] relative border-b border-[#a67958]/15">
+                {/* Blurred Backdrop */}
+                <img 
+                  src={prod.img} 
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover blur-xl opacity-20 grayscale"
+                  referrerPolicy="no-referrer"
+                />
+                
+                <img 
+                  src={prod.img} 
+                  alt={prod.tier}
+                  className="w-full h-full object-cover relative z-10 transition-transform duration-700 ease-out group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute top-3 left-3 bg-[#ece6dd]/95 backdrop-blur-sm px-3 py-1 rounded-full border border-[#a67958]/20 font-mono text-[8.5px] uppercase tracking-widest text-[#231e1a] font-bold z-10 shadow-sm">
+                  {prod.tag}
+                </div>
+              </div>
+
+              {/* Contents */}
+              <div className="p-6 md:p-8 flex flex-col flex-grow">
+                <h3 className="text-xl font-sans font-bold text-[#231e1a] lowercase mb-1 group-hover:text-[#a67958] transition-colors duration-300">
+                  {prod.tier}
+                </h3>
+                <p className="font-mono text-[9px] uppercase tracking-widest text-[#a67958]/85 mb-4 font-bold">
+                  {prod.tag}
+                </p>
+                <p className="text-xs leading-relaxed text-[#231e1a]/70 font-sans tracking-wide lowercase flex-grow">
+                  {prod.desc}
+                </p>
+                
+                {/* Micro CTA */}
+                <div className="mt-6 flex items-center justify-between text-[#231e1a] hover:text-[#a67958] transition-colors duration-200 cursor-pointer pt-4 border-t border-[#a67958]/15">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] font-medium">request protocol specs</span>
+                  <ChevronRight size={14} className="transform transition-transform duration-300 group-hover:translate-x-1 text-[#a67958]" />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   </>
@@ -537,7 +619,7 @@ const LearningPage = () => (
       description="synthesis protocols, attention hardening, and temporal skew techniques to achieve peak cognitive endurance." 
       keywords="cognitive training, focus guides, attention hardening, flow mastery, productivity learning, Epping Sydney"
     />
-    <Hero title="learning modules" subtitle="synthesis | protocol | mastery" />
+    <Hero title="learning modules" subtitle="synthesis | protocol | mastery" youtubeId="ctx0uUiB2iE" />
     {listSection([
       { title: "visual synthesis", desc: "absorb complex systems through layered spatial visualization." },
       { title: "temporal skew", desc: "master time perception to extend periods of peak cognitive performance." },

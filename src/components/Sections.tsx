@@ -24,16 +24,17 @@ const HERO_IMAGES = [
   "https://static.wixstatic.com/media/b20068_6d5e49d0a4804384b63f33e1c9b0bdcb~mv2.jpeg"
 ];
 
-export const Hero = ({ title, subtitle, images = HERO_IMAGES }: { title?: string, subtitle?: string, images?: string[] }) => {
+export const Hero = ({ title, subtitle, images = HERO_IMAGES, youtubeId }: { title?: string, subtitle?: string, images?: string[], youtubeId?: string }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
+    if (youtubeId) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [images.length]);
+  }, [images.length, youtubeId]);
 
   return (
     <section className="matte-texture min-h-[75vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24 px-4 md:px-8 relative w-full">
@@ -54,31 +55,40 @@ export const Hero = ({ title, subtitle, images = HERO_IMAGES }: { title?: string
           onMouseLeave={() => setIsHovered(false)}
         >
           <div className="absolute inset-0 rounded-2xl md:rounded-[2rem] overflow-hidden border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentSlide}
-                initial={{ opacity: 0, scale: 1.015 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="absolute inset-0 w-full h-full"
-              >
-                {/* Blurred Backdrop for seamless look when aspect ratios don't match */}
-                <img 
-                  src={images[currentSlide]} 
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-20 grayscale"
-                  referrerPolicy="no-referrer"
-                />
-                
-                <img 
-                  src={images[currentSlide]} 
-                  alt="immersive environment"
-                  className="w-full h-full object-contain relative z-10 select-none block"
-                  referrerPolicy="no-referrer"
-                />
-              </motion.div>
-            </AnimatePresence>
+            {youtubeId ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&playsinline=1`}
+                title="PsyLife Hero Video"
+                className="absolute top-0 left-0 w-full h-full border-0 scale-[1.02]"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              />
+            ) : (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, scale: 1.015 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  {/* Blurred Backdrop for seamless look when aspect ratios don't match */}
+                  <img 
+                    src={images[currentSlide]} 
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-20 grayscale"
+                    referrerPolicy="no-referrer"
+                  />
+                  
+                  <img 
+                    src={images[currentSlide]} 
+                    alt="immersive environment"
+                    className="w-full h-full object-cover relative z-10 select-none block"
+                    referrerPolicy="no-referrer"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            )}
           </div>
         </motion.div>
 
@@ -435,7 +445,7 @@ export const PublicationDownload = () => (
            whileInView={{ opacity: 1, scale: 1, y: 0 }}
            viewport={{ once: true }}
            transition={{ duration: 1.2 }}
-           className="relative group w-full max-w-sm aspect-[4/5] rounded-[36px] overflow-hidden depth-card border border-[#a67958]/20 p-6 flex flex-col justify-between"
+           className="relative group w-full max-w-sm aspect-[4/5] rounded-[36px] overflow-hidden depth-card border border-[#a67958]/35 bg-[#ece6dd] p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(27,22,19,0.12)]"
         >
           <div className="absolute inset-0 z-0">
             <img 
@@ -494,7 +504,7 @@ export const ArchitectSection = () => (
     <div className="grid lg:grid-cols-12 gap-16 items-center">
       <div className="lg:col-span-6 order-2 lg:order-1">
         <motion.div 
-          className="relative w-full aspect-[4/3] md:aspect-video rounded-[32px] overflow-hidden border border-white/10 depth-card"
+          className="relative w-full aspect-[4/3] md:aspect-video rounded-2xl md:rounded-[2rem] overflow-hidden border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.18),0_15px_30px_rgba(27,22,19,0.1)] depth-card"
           whileHover={{ scale: 1.02 }}
         >
           <img 
