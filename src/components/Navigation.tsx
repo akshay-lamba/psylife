@@ -33,18 +33,19 @@ export const Navigation = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="fixed top-6 left-0 right-0 z-50 w-full flex justify-center px-4 md:px-8 pointer-events-none"
+      className="fixed top-6 left-0 right-0 z-50 w-full flex justify-center pointer-events-none"
     >
-      <div
-        className={`w-[95%] max-w-7xl transition-all duration-500 rounded-[2rem] border border-[#a67958]/20 px-6 md:px-12 pointer-events-auto flex justify-between items-center ${
-          isScrolled ? "py-2" : "py-3"
-        }`}
-        style={{
-          background: 'rgba(37, 32, 29, 0.94)',
-          backdropFilter: 'blur(20px)'
-        }}
-      >
-        <nav className="flex justify-between items-center w-full">
+      <div className="w-full max-w-7xl px-6 md:px-12">
+        <div
+          className={`w-full transition-all duration-500 rounded-[2rem] border border-[#a67958]/20 px-6 md:px-12 pointer-events-auto flex justify-between items-center ${
+            isScrolled ? "py-2" : "py-3"
+          }`}
+          style={{
+            background: 'rgba(37, 32, 29, 0.94)',
+            backdropFilter: 'blur(20px)'
+          }}
+        >
+          <nav className="flex justify-between items-center w-full">
           <Link 
             to="/"
             className="cursor-pointer flex items-center justify-start shrink-0"
@@ -56,9 +57,6 @@ export const Navigation = () => {
                 className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border border-[#a67958]/25 shadow-sm" 
                 referrerPolicy="no-referrer"
               />
-              <span className="hidden sm:inline-block font-sans text-[10px] md:text-[11px] tracking-[0.25em] text-[#ebe6df]/85 font-medium lowercase">
-                family | fun | foundations
-              </span>
             </motion.div>
           </Link>
 
@@ -132,6 +130,7 @@ export const Navigation = () => {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </div>
     </motion.header>
   );

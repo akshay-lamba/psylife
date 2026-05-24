@@ -7,6 +7,10 @@ interface SEOProps {
   keywords?: string;
   ogType?: string;
   ogImage?: string;
+  ogLocale?: string;
+  ogSiteName?: string;
+  twitterCard?: string;
+  twitterSite?: string;
 }
 
 export const SEO = ({
@@ -14,7 +18,11 @@ export const SEO = ({
   description,
   keywords,
   ogType = "website",
-  ogImage = "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg"
+  ogImage = "https://static.wixstatic.com/media/b20068_bae679114153424cb246f3b55c6ffa3f~mv2.jpeg",
+  ogLocale = "en_AU",
+  ogSiteName = "psylife",
+  twitterCard = "summary_large_image",
+  twitterSite = "@psylife"
 }: SEOProps) => {
   const location = useLocation();
   const canonicalUrl = `https://www.psylife.shop${location.pathname === "/" ? "" : location.pathname}`;
@@ -36,11 +44,15 @@ export const SEO = ({
     updateMetaTag("property", "og:description", description);
     updateMetaTag("property", "og:url", canonicalUrl);
     updateMetaTag("property", "og:type", ogType);
+    updateMetaTag("property", "og:locale", ogLocale);
+    updateMetaTag("property", "og:site_name", ogSiteName);
     if (ogImage) {
       updateMetaTag("property", "og:image", ogImage);
     }
 
     // 5. Update Twitter details
+    updateMetaTag("name", "twitter:card", twitterCard);
+    updateMetaTag("name", "twitter:site", twitterSite);
     updateMetaTag("name", "twitter:title", title);
     updateMetaTag("name", "twitter:description", description);
     updateMetaTag("name", "twitter:url", canonicalUrl);
@@ -51,7 +63,7 @@ export const SEO = ({
     // 6. Update Canonical Link
     updateCanonicalLink(canonicalUrl);
 
-  }, [title, description, keywords, ogType, ogImage, canonicalUrl]);
+  }, [title, description, keywords, ogType, ogImage, ogLocale, ogSiteName, twitterCard, twitterSite, canonicalUrl]);
 
   return null;
 };

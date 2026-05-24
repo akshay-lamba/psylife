@@ -36,69 +36,66 @@ export const Hero = ({ title, subtitle, images = HERO_IMAGES }: { title?: string
   }, [images.length]);
 
   return (
-    <Section className="matte-texture min-h-[75vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24">
+    <section className="matte-texture min-h-[75vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24 px-4 md:px-8 relative w-full">
       {/* Subtle theme-color backlight glow (#a67c52 / var(--primary)) */}
       <motion.div 
-        className="absolute w-[80vw] md:w-[55vw] aspect-[4/3] md:aspect-video rounded-[60px] bg-primary/10 blur-[100px] pointer-events-none z-0 mix-blend-screen"
+        className="absolute w-full max-w-4xl aspect-[4/3] md:aspect-[16/10] rounded-2xl md:rounded-[2rem] bg-primary/10 blur-[100px] pointer-events-none z-0 mix-blend-screen"
         animate={{
-          scale: isHovered ? 1.08 : 0.95,
-          opacity: isHovered ? 0.75 : 0.45,
+          scale: isHovered ? 1.05 : 0.96,
+          opacity: isHovered ? 0.6 : 0.35,
         }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       />
 
-      <motion.div 
-        className="relative w-[90vw] md:w-[65vw] aspect-[4/3] md:aspect-video z-10 mt-12 group cursor-crosshair"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="absolute inset-0 rounded-[40px] overflow-hidden border border-[#a67958]/15 glass shadow-2xl">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="absolute inset-0 bg-[#231e1a]"
-            >
-              {/* Blurred Backdrop for seamless look when aspect ratios don't match */}
-              <img 
-                src={images[currentSlide]} 
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-30 grayscale"
-                referrerPolicy="no-referrer"
-              />
-              
-              <motion.img 
-                src={images[currentSlide]} 
-                alt="immersive environment"
-                className="w-full h-full object-contain relative z-10"
-                animate={{ 
-                  filter: isHovered ? "grayscale(0%) brightness(100%)" : "grayscale(100%) brightness(75%)"
-                }}
-                transition={{ duration: 0.8 }}
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#231e1a] via-transparent to-transparent opacity-40 pointer-events-none z-20" />
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </motion.div>
+      <div className="max-w-4xl mx-auto w-full relative z-10 flex flex-col items-center">
+        <motion.div 
+          className="relative w-full aspect-[4/3] md:aspect-[16/10] z-10 group cursor-crosshair"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div className="absolute inset-0 rounded-2xl md:rounded-[2rem] overflow-hidden border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0, scale: 1.015 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="absolute inset-0 w-full h-full"
+              >
+                {/* Blurred Backdrop for seamless look when aspect ratios don't match */}
+                <img 
+                  src={images[currentSlide]} 
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-20 grayscale"
+                  referrerPolicy="no-referrer"
+                />
+                
+                <img 
+                  src={images[currentSlide]} 
+                  alt="immersive environment"
+                  className="w-full h-full object-contain relative z-10 select-none block"
+                  referrerPolicy="no-referrer"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        className="mt-12 text-center"
-      >
-        {title && <h1 className="text-4xl md:text-6xl font-sans font-bold metallic-text lowercase mb-4">{title}</h1>}
-        {subtitle !== "" && (
-          <p className="text-[11px] font-medium tracking-[0.6em] lowercase text-on-background/40">
-            {subtitle || "family | fun | foundations"}
-          </p>
-        )}
-      </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="mt-12 text-center"
+        >
+          {title && <h1 className="text-4xl md:text-6xl font-sans font-bold metallic-text lowercase mb-4">{title}</h1>}
+          {subtitle !== "" && (
+            <p className="text-[11px] font-medium tracking-[0.6em] lowercase text-on-background/40">
+              {subtitle || "family | fun | foundations"}
+            </p>
+          )}
+        </motion.div>
+      </div>
 
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-30">
         <motion.div 
@@ -107,7 +104,7 @@ export const Hero = ({ title, subtitle, images = HERO_IMAGES }: { title?: string
           className="absolute top-[10%] left-[5%] w-64 h-64 border border-[#a67958]/12 rounded-[60px] rotate-12"
         />
       </div>
-    </Section>
+    </section>
   );
 };
 
