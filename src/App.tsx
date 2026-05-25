@@ -418,45 +418,43 @@ const ParentPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
-              className="p-8 md:p-12 bg-[#ece6dd]/30 border border-[#a67958]/30 max-w-4xl space-y-6"
+              className="p-8 md:p-12 bg-[#ece6dd]/30 border border-[#a67958]/30 max-w-4xl"
             >
-              <div className="space-y-1">
-                <h4 className="text-xl md:text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
-                  you do not have to hide the panic
-                </h4>
-              </div>
-              
-              <div className="space-y-4 text-xs md:text-sm text-[#231e1a]/80 leading-relaxed lowercase">
-                <p>
-                  the hardest part of this perfect storm is feeling like you have to have all the answers. you don't. nobody sent out a manual for how to parent in the age of artificial intelligence while managing a modern mortgage.
-                </p>
-                <p>
-                  the most powerful thing you can do for your child right now is to stop pretending you have it all figured out.
-                </p>
-                <p className="font-medium text-[#231e1a]">
-                  when a parent sits down with their teenager, looks at a piece of technology, and says, "i don't fully understand how this changes things either, but we are going to learn how to work with this tool together as a team," something massive shifts. the pressure lifts, and the real learning begins.
-                </p>
-                <p className="text-[#a67958] font-medium pt-2 border-t border-[#a67958]/15">
-                  you cannot stop the storm, but you can change how your family prepares for it. let's bring the tools home, take the data back into our own hands, and build the judgment your child actually needs to thrive.
-                </p>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="space-y-6 lg:col-span-8 text-left">
+                  <div className="space-y-1">
+                    <h4 className="text-xl md:text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                      you do not have to hide the panic
+                    </h4>
+                  </div>
+                  
+                  <div className="space-y-4 text-xs md:text-sm text-[#231e1a]/85 leading-relaxed lowercase">
+                    <p>
+                      the hardest part of this perfect storm is feeling like you have to have all the answers. you don't. nobody sent out a manual for how to parent in the age of artificial intelligence while managing a modern mortgage.
+                    </p>
+                    <p>
+                      the most powerful thing you can do for your child right now is to stop pretending you have it all figured out.
+                    </p>
+                    <p className="font-medium text-[#231e1a]">
+                      when a parent sits down with their teenager, looks at a piece of technology, and says, "i don't fully understand how this changes things either, but we are going to learn how to work with this tool together as a team," something massive shifts. the pressure lifts, and the real learning begins.
+                    </p>
+                    <p className="text-[#a67958] font-medium pt-2 border-t border-[#a67958]/15">
+                      you cannot stop the storm, but you can change how your family prepares for it. let's bring the tools home, take the data back into our own hands, and build the judgment your child actually needs to thrive.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-4 w-full flex justify-center">
+                  <InteractivePdfCard 
+                    pdfUrl="https://b2006858-57c1-480a-9730-8e9f2057acb9.usrfiles.com/ugd/b20068_00cbc29729da47b8be8779b64433abc0.pdf"
+                    labelText="slide to read blueprint" 
+                    successText="displaying blueprint..."
+                  />
+                </div>
               </div>
             </motion.div>
 
           </div>
-
-          {/* Spacer */}
-          <div className="h-16 md:h-24 w-full" />
-
-          {/* Section 3 - Beautiful 3D Dynamic Interactive PDF document preview card */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full flex justify-center items-center z-10"
-          >
-            <InteractivePdfCard />
-          </motion.div>
         </div>
       </div>
     </>
@@ -892,54 +890,52 @@ const ChildPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
-              className="p-8 md:p-12 bg-[#ece6dd]/30 border border-[#a67958]/30 max-w-4xl space-y-6"
+              className="p-8 md:p-12 bg-[#ece6dd]/30 border border-[#a67958]/30 max-w-4xl"
             >
-              <div className="space-y-1">
-                <h4 className="text-xl md:text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
-                  what i actually need from you
-                </h4>
-              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="space-y-6 lg:col-span-8 text-left">
+                  <div className="space-y-1">
+                    <h4 className="text-xl md:text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                      what i actually need from you
+                    </h4>
+                  </div>
 
-              <div className="space-y-4 text-xs md:text-sm text-[#231e1a]/80 leading-relaxed lowercase">
-                <p>
-                  when these five walls are closing in on me, the last thing that helps is being told to "just study harder" or getting another lecture about my future. that just turns up the heat.
-                </p>
-                <p>
-                  i don't need you to give me another practice exam. and i definitely don't want another cloud app tracking my data or making me feel anxious.
-                </p>
-                <div className="p-4 bg-[#ece6dd] border border-[#a67958]/20 rounded-none text-center italic my-3 text-xs md:text-sm text-[#231e1a] font-medium">
-                  "i need a release valve."
+                  <div className="space-y-4 text-xs md:text-sm text-[#231e1a]/85 leading-relaxed lowercase">
+                    <p>
+                      when these five walls are closing in on me, the last thing that helps is being told to "just study harder" or getting another lecture about my future. that just turns up the heat.
+                    </p>
+                    <p>
+                      i don't need you to give me another practice exam. and i definitely don't want another cloud app tracking my data or making me feel anxious.
+                    </p>
+                    <div className="p-4 bg-[#ece6dd] border border-[#a67958]/20 rounded-none text-center italic my-3 text-xs md:text-sm text-[#231e1a] font-medium">
+                      "i need a release valve."
+                    </div>
+                    <p>
+                      i need to stop just scrolling through public digital garbage and actually build something real. running a physical server right here at home gives me something i can actually control. when a connection drops or the system needs to be fixed, let me handle it. let me figure out how the real world works, not just the school workspace. show me how to use these AI tools to automate the boring, repetitive study chores so i can get some sleep, move my body, and actually have time to be a kid.
+                    </p>
+                    <p className="font-medium text-[#231e1a] pt-3 border-t border-[#a67958]/15">
+                      but mostly, i just need you to come in, sit down at the table next to me, and admit that this world is confusing for you, too.
+                    </p>
+                    <p className="text-[#a67958] font-semibold">
+                      when you stop pretending to have all the answers and say, "hey, i don't know how this AI stuff changes things either, but let's work it out together," the weight drops off my shoulders. i don't feel like a disappointment anymore. i feel like we're a team.
+                    </p>
+                    <p className="text-xs font-mono text-[#a67958]/80 font-bold uppercase tracking-wider pt-2 block">
+                      stop pushing me down the old path. let's learn how to choose the right one together.
+                    </p>
+                  </div>
                 </div>
-                <p>
-                  i need to stop just scrolling through public digital garbage and actually build something real. running a physical server right here at home gives me something i can actually control. when a connection drops or the system needs to be fixed, let me handle it. let me figure out how the real world works, not just the school workspace. show me how to use these AI tools to automate the boring, repetitive study chores so i can get some sleep, move my body, and actually have time to be a kid.
-                </p>
-                <p className="font-medium text-[#231e1a] pt-3 border-t border-[#a67958]/15">
-                  but mostly, i just need you to come in, sit down at the table next to me, and admit that this world is confusing for you, too.
-                </p>
-                <p className="text-[#a67958] font-semibold">
-                  when you stop pretending to have all the answers and say, "hey, i don't know how this AI stuff changes things either, but let's work it out together," the weight drops off my shoulders. i don't feel like a disappointment anymore. i feel like we're a team.
-                </p>
-                <p className="text-xs font-mono text-[#a67958]/80 font-bold uppercase tracking-wider pt-2 block">
-                  stop pushing me down the old path. let's learn how to choose the right one together.
-                </p>
+
+                <div className="lg:col-span-4 w-full flex justify-center">
+                  <InteractivePdfCard 
+                    pdfUrl="https://b2006858-57c1-480a-9730-8e9f2057acb9.usrfiles.com/ugd/b20068_00cbc29729da47b8be8779b64433abc0.pdf"
+                    labelText="slide to read blueprint" 
+                    successText="displaying blueprint..."
+                  />
+                </div>
               </div>
             </motion.div>
 
           </div>
-
-          {/* Thin space separated section wrapper */}
-          <div className="h-16 md:h-24 w-full" />
-
-          {/* Section 3 - Beautiful 3D Dynamic Interactive PDF document preview card */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full flex justify-center items-center z-10"
-          >
-            <InteractivePdfCard />
-          </motion.div>
         </div>
       </div>
     </>
