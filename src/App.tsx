@@ -57,7 +57,7 @@ const HomePage = () => (
     <SEO 
       title="psylife.shop" 
       description="psylife.shop: Family | Fun | Foundations. Engineering family focus and interactive spatial systems." 
-      keywords="psylife.shop, psylife, Family | Fun | Foundations, neural architecture, focus, Epping Sydney, family foundations, learning mastery"
+      keywords="psylife.shop, psylife, Family | Fun | Foundations, neural architecture, focus, Epping Sydney, family foundations, learning and attention"
     />
     <Hero title="psylife.shop" subtitle="Family | Fun | Foundations" />
     <YoutubeSection />
@@ -99,7 +99,7 @@ const PARENT_SLIDES = [
     tag: "attention environment",
     title: "attention environment and spatial engineering",
     src: "https://static.wixstatic.com/media/b20068_3195f8f57d8e4f6aa014ead1d5fd538c~mv2.jpeg",
-    alt: "we don't teach. we architect. environments designed for effortless mastery."
+    alt: "we don't teach. we architect. environments designed for effortless focus."
   }
 ];
 
@@ -129,7 +129,7 @@ const ParentPage = () => {
     <>
       <SEO 
         title="the parent protocol | psylife.shop" 
-        description="guide the developing mind toward master focus. learn to build beautiful, friction-free environments to naturalise attention without fatigue." 
+        description="guide the developing mind toward deep focus. learn to build beautiful, friction-free environments to naturalise attention without fatigue." 
         keywords="parent protocol, kids focus, attention training, family focus, cognitive parenting, child focus, Epping Sydney"
       />
       <div className="bg-[#dfd5c8] text-[#231e1a] min-h-screen relative overflow-hidden matte-texture py-12 md:py-20 px-4 md:px-8">
@@ -499,7 +499,7 @@ const ChildPage = () => {
     <>
       <SEO 
         title="child exploration | psylife.shop" 
-        description="tactile and virtual environments designed for high-velocity child learning, creative exploration, play, and digital focus mastery." 
+        description="tactile and virtual environments designed for high-velocity child learning, creative exploration, play, and digital focus." 
         keywords="child exploration, creative play, youth focus, deep curiosity, focus development, tactile play, Epping Sydney"
       />
       <div className="bg-[#dfd5c8] text-[#231e1a] min-h-screen relative overflow-hidden matte-texture py-12 md:py-20 px-4 md:px-8">
@@ -851,8 +851,9 @@ const ProductsPage = () => {
                 <div className="lg:col-span-5 space-y-8">
                   <div>
                     <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">pricing model</span>
-                    <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1">
-                      digital <span className="text-[#a67958]">(the curious tier)</span>
+                    <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1 flex flex-col items-start gap-1">
+                      <span>digital</span>
+                      <span className="text-[#a67958] text-[13px] font-mono font-bold leading-normal block mt-1">the curious teir</span>
                     </h3>
                     <p className="font-mono text-[11px] font-bold text-[#231e1a] uppercase bg-[#dfd5c8] border border-[#a67958]/20 rounded-full py-1.5 px-4 inline-block mt-3 shadow-sm">
                       $199.99 per month (All-Inclusive)
@@ -894,9 +895,9 @@ const ProductsPage = () => {
                   <div className="space-y-3 pt-6 border-t border-[#a67958]/20">
                     <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">staying on track</h4>
                     <div className="p-5 rounded-2xl bg-[#dfd5c8]/50 border border-[#a67958]/25 space-y-1.5 shadow-sm">
-                      <h5 className="font-sans font-bold text-xs lowercase text-[#231e1a]">Weekly 1-Hour Masterclass</h5>
+                      <h5 className="font-sans font-bold text-xs lowercase text-[#231e1a]">Weekly 1-Hour Session</h5>
                       <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                        Includes 1 live masterclass every single week for exactly 1 hour. This is our direct time to check in, answer your questions, fix any local tech problems with the server, and make sure your child is actively using these local tools in real life.
+                        Includes 1 live session every single week for exactly 1 hour. This is our direct time to check in, answer your questions, fix any local tech problems with the server, and make sure your child is actively using these local tools in real life.
                       </p>
                     </div>
                   </div>
@@ -968,8 +969,9 @@ const ProductsPage = () => {
                 <div className="lg:col-span-5 space-y-8">
                   <div>
                     <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">cohort program</span>
-                    <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1">
-                      physical <span className="text-[#a67958]">(the committed tier)</span>
+                    <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1 flex flex-col items-start gap-1">
+                      <span>physical</span>
+                      <span className="text-[#a67958] text-[13px] font-mono font-bold leading-normal block mt-1">the committed teir</span>
                     </h3>
                     <p className="font-mono text-[11px] font-bold text-[#231e1a] uppercase bg-[#dfd5c8] border border-[#a67958]/20 rounded-full py-1.5 px-4 inline-block mt-3 shadow-sm">
                       $499.99 (All-Inclusive)
@@ -1098,9 +1100,10 @@ const ProductsPage = () => {
                 {/* Left Column - 5 cols */}
                 <div className="lg:col-span-5 space-y-8">
                   <div>
-                    <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">elite strategic retreat</span>
-                    <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1">
-                      immersive <span className="text-[#a67958]">(the creator tier)</span>
+                    <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">5-day retreat</span>
+                    <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1 flex flex-col items-start gap-1">
+                      <span>immersive</span>
+                      <span className="text-[#a67958] text-[13px] font-mono font-bold leading-normal block mt-1">the creator teir</span>
                     </h3>
                     <p className="font-mono text-[11px] font-bold text-[#231e1a] uppercase bg-[#dfd5c8] border border-[#a67958]/20 rounded-full py-1.5 px-4 inline-block mt-3 shadow-sm">
                       $2999.99 (All-Inclusive)
@@ -1112,9 +1115,9 @@ const ProductsPage = () => {
                     <div className="grid grid-cols-2 gap-3">
                       {[
                         { label: "duration", value: "strictly 5 days long" },
-                        { label: "location", value: "Blue Mountains, NSW" },
+                        { label: "location", value: "Blue Mountains" },
                         { label: "cohort limit", value: "max 5 families (strictly capped)" },
-                        { label: "audience type", value: "parent-child strategic partners" }
+                        { label: "audience type", value: "parent & child" }
                       ].map((item, idx) => (
                         <div key={idx} className="p-3 bg-[#dfd5c8]/50 rounded-xl border border-[#a67958]/20 text-center flex flex-col justify-center">
                           <span className="font-mono text-[8.5px] uppercase tracking-wider text-[#a67958]/80 font-bold block">{item.label}</span>
@@ -1141,7 +1144,7 @@ const ProductsPage = () => {
                           Custom Process Optimization
                         </h5>
                         <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                          Five full days dedicated entirely to isolating, building, and refining your family's customized data processes and independent learning workflows out in a premium, quiet retreat setting.
+                          Five full days dedicated entirely to isolating, building, and refining your family's customized data processes and independent learning workflows out in a quiet retreat setting.
                         </p>
                       </div>
                     </div>
@@ -1158,10 +1161,10 @@ const ProductsPage = () => {
                 {/* Right Column - 7 cols */}
                 <div className="lg:col-span-7 space-y-6 lg:pl-8 lg:border-l border-[#a67958]/20">
                   <div className="space-y-2">
-                    <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">premium master planning</span>
-                    <h4 className="text-lg font-sans font-bold text-[#231e1a] tracking-tight lowercase">the 5 core strategic tracks solved during the retreat</h4>
+                    <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">retreat plan</span>
+                    <h4 className="text-lg font-sans font-bold text-[#231e1a] tracking-tight lowercase">the 5 tracks solved during the retreat</h4>
                     <p className="text-xs text-[#231e1a]/70 lowercase leading-relaxed">
-                      Emerge with direct physical execution blocks. Establish complete operational and data hegemony for your family.
+                      Emerge with direct physical execution blocks. Establish complete operational and data agency for your family.
                     </p>
                   </div>
 
@@ -1169,7 +1172,7 @@ const ProductsPage = () => {
                     {[
                       {
                         num: "01",
-                        title: "Track 1: Mastered Factorial Thinking",
+                        title: "Track 1: Factorial Thinking",
                         text: "Dedicating extended, undistracted time to completely reset your child's cognitive habits, changing their core approach from linear school memory work to advanced, multidimensional systems architecture."
                       },
                       {
@@ -1293,7 +1296,7 @@ const LEARNING_PLAYBOOKS = [
     focus: "A direct, step-by-step instruction guide that takes away all the confusion of technical setup.",
     inside: "Practical, bottom-up manuals that teach you and your child exactly how to build, deploy, configure, and control your family’s private local VPS server right from your own desk. It focuses on hands-on deployment and managing software from scratch.",
     src: "https://static.wixstatic.com/media/b20068_ae5d7cd9b0ac43f2b53fe3fe54ab0971~mv2.jpeg",
-    alt: "step-by-step master instruction guide for private local server VPS setup",
+    alt: "step-by-step instruction guide for private local server VPS setup",
     audio: {
       title: "sovereign_vps_setup_02.mp3",
       description: "building custom servers for unconstrained family safety.",
@@ -1396,7 +1399,7 @@ const LEARNING_PLAYBOOKS = [
     tag: "audit-first insights",
     title: "Finding Smart Insights & The Double-Check Playbook",
     focus: "Uncovering unique insights using AI while installing a strict \"audit-first\" safety mindset.",
-    inside: "Advanced strategic frameworks that teach your child how to push artificial intelligence tools to find deep, non-obvious ideas that others miss. Crucially, it drills the habit of never blindly trusting a computer's answer, mapping out exactly how to double-check machine outputs against hard, real-world facts so they never fall into the passive public tool trap.",
+    inside: "Advanced frameworks that teach your child how to push artificial intelligence tools to find deep, non-obvious ideas that others miss. Crucially, it drills the habit of never blindly trusting a computer's answer, mapping out exactly how to double-check machine outputs against hard, real-world facts so they never fall into the passive public tool trap.",
     src: "https://static.wixstatic.com/media/b20068_f750f553758547128e12ae8756d97a8d~mv2.jpeg",
     alt: "advanced frameworks for AI prompt inquiry with strict double check auditing",
     audio: {
@@ -1414,7 +1417,7 @@ const LEARNING_PLAYBOOKS = [
         "slide 1: prompt constraints. how to prevent generic outputs by feeding the system rigorous datasets.",
         "slide 2: locating subtle hallucinations. teaching kids to find contradictions and false machine logic.",
         "slide 3: real verification rules. matching automated text with reliable physical books or verified sources.",
-        "slide 4: spatial strategic output. transforming machine drafts into high-grade analytical papers."
+        "slide 4: spatial output. transforming drafts into analytical papers."
       ]
     },
     document: {
@@ -1423,7 +1426,7 @@ const LEARNING_PLAYBOOKS = [
     },
     chart: {
       title: "recursive validation feedback model",
-      nodes: ["advanced prompt query", "raw machine response", "rigorous audit checklist", "verified strategic output"]
+      nodes: ["advanced prompt query", "raw machine response", "rigorous audit checklist", "verified output"]
     }
   }
 ];
@@ -1625,7 +1628,7 @@ const LearningPage = () => {
                 </p>
               </div>
               <div className="pt-6 border-t border-[#a67958]/15 mt-6 flex justify-between items-center">
-                <span className="font-mono text-[8px] text-[#231e1a]/50">Epping, NSW (2121)</span>
+                <span className="font-mono text-[8px] text-[#231e1a]/50">Epping (2121)</span>
                 <span className="font-mono text-[8px] text-[#a67958] uppercase font-bold tracking-widest">Format Agnostic</span>
               </div>
             </div>
@@ -1724,7 +1727,7 @@ const LearningPage = () => {
                       </div>
 
                       <div className="text-center z-10 mt-6 max-w-full">
-                        <span className="font-mono text-[9px] uppercase tracking-widest text-[#a67958]/90 font-bold max-w-full truncate block px-2">
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-[#a67958]/90 font-bold max-w-full block px-2 whitespace-normal break-words leading-relaxed">
                           {LEARNING_PLAYBOOKS[currentIndex].audio.title}
                         </span>
                         <span className="font-mono text-[7px] text-[#ece6dd]/40 tracking-[0.2em] block mt-1 uppercase">
@@ -1924,7 +1927,7 @@ const LearningPage = () => {
                           </h3>
                         </div>
                         <p className="text-xs text-[#231e1a]/60 leading-relaxed lowercase">
-                          this visual screencast walkthrough covers bottom-up logical setup rules, direct prompt testing, local server connections, and strategic Epping family focus guidelines in plain English.
+                          this visual screencast walkthrough covers bottom-up logical setup rules, direct prompt testing, local server connections, and Epping family focus guidelines in plain English.
                         </p>
                       </div>
 
@@ -2222,7 +2225,7 @@ const LearningPage = () => {
                               {activeChartNode === 0 && "this core represents Epping biological and cognitive triggers—ensuring environmental alignment perfectly shields focus."}
                               {activeChartNode === 1 && "this coordinate tracks how knowledge vectors connect dynamically over a multi-year duration."}
                               {activeChartNode === 2 && "this represents the secure local server vault where families contain encrypted knowledge assets directly on their desk."}
-                              {activeChartNode === 3 && "this node acts as the strategic validation checking routine, grounding synthetic insights in physical text real-world validation data."}
+                              {activeChartNode === 3 && "this node acts as the validation checking routine, grounding synthetic insights in physical text real-world validation data."}
                             </p>
                           </motion.div>
                         )}
@@ -2296,7 +2299,7 @@ const AboutPage = () => (
   <>
     <SEO 
       title="about us & genesis | psylife.shop" 
-      description="the genesis of psylife.shop. we build premium, architected environments to curate digital permanence and focus." 
+      description="the genesis of psylife.shop. we build architected environments to curate digital permanence and focus." 
       keywords="psylife story, attention architecture, focus research, team alpha, Epping Sydney"
     />
     <Hero title="about psylife" subtitle="engineering focused futures" />

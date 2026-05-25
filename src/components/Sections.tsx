@@ -623,7 +623,7 @@ export const FlowProtocolSection = () => {
 
             <div className="pt-4 border-t border-on-background/10">
               <p className="text-[10px] text-on-background/60 leading-relaxed font-mono italic">
-                "mastery is not about isolating your child with better tutors. it's about restructuring the shared environment so you can conquer the future, together."
+                "focus is not about isolating your child with better tutors. it's about restructuring the shared environment so you can work together."
               </p>
             </div>
           </div>
