@@ -238,42 +238,211 @@ const ParentPage = () => {
             </div>
           </div>
 
-          {/* Centered Dynamic Title block underneath matching homepage style */}
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            key={`title-${currentIndex}`}
-            transition={{ duration: 0.8 }}
-            className="mt-12 text-center"
-          >
-            <span className="font-mono text-[9px] uppercase tracking-[0.45em] text-[#a67958]/80 font-bold block mb-3">
-              {PARENT_SLIDES[currentIndex].tag}
-            </span>
-            <h1 className="text-3xl md:text-5xl font-sans font-bold text-[#231e1a] tracking-tight lowercase mb-4 max-w-2xl mx-auto px-4">
-              {PARENT_SLIDES[currentIndex].title}
-            </h1>
-          </motion.div>
-
           {/* Spacer */}
           <div className="h-16 md:h-24 w-full" />
 
-          {/* YouTube video below it matching ChildPage structure */}
-          <motion.div 
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/35 bg-[#ece6dd] aspect-video relative z-10"
-          >
-            <iframe
-              src="https://www.youtube.com/embed/lH4QkrgLuCI?autoplay=1&mute=1&loop=1&playlist=lH4QkrgLuCI&playsinline=1"
-              title="the parent protocol - audio visual overview"
-              className="absolute top-0 left-0 w-full h-full border-0 scale-[1.02]"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            />
-            {/* Very soft bottom shadow at the bottom boundary */}
-            <div className="absolute bottom-0 inset-x-0 h-4 bg-gradient-to-t from-[#1b1613]/5 to-transparent pointer-events-none z-10" />
-          </motion.div>
+          {/* Clean, Human-Friendly Narrative & Diagnostic Block */}
+          <div className="w-full max-w-4xl mx-auto space-y-16 md:space-y-24 relative z-10 text-left">
+            
+            {/* The Kitchen Table Conversation Intro */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6 max-w-3xl"
+            >
+              <div className="h-[1px] w-12 bg-[#a67958]/35" />
+              <p className="text-xl md:text-2xl font-sans font-light leading-relaxed text-[#231e1a]/90 lowercase tracking-tight">
+                there is a conversation happening at kitchen tables all over epping right now, but it usually happens in whispers after the kids have gone to bed. it is a conversation driven by a quiet, exhausting realization: the pressure is rising from every single direction at once, and the old rules for helping your child build a secure life are breaking down.
+              </p>
+              <div className="p-6 bg-[#ece6dd]/30 border-l border-[#a67958]/30 space-y-2">
+                <p className="text-sm font-sans font-medium text-[#231e1a]/85 lowercase">
+                  if you are feeling completely overwhelmed by this, you need to hear this clearly: you are not failing, and you are not overreacting.
+                </p>
+                <p className="text-sm font-sans text-[#a67958] lowercase font-semibold">
+                  you are standing in the middle of a perfect storm.
+                </p>
+              </div>
+              <p className="text-[#231e1a]/70 text-xs md:text-sm leading-relaxed lowercase">
+                we want to talk about what this storm actually looks like for a family in our neighborhood today—honestly, without marketing hype, and without pretending that a high ATAR score alone is going to fix it.
+              </p>
+            </motion.div>
+
+            {/* The Three Walls Closing In */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
+            >
+              <div className="space-y-2">
+                <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                  the three walls closing in
+                </h3>
+                <p className="text-xs md:text-sm text-[#231e1a]/60 lowercase">
+                  when you look at your family budget and your child’s future today, you are fighting a battle on three separate fronts:
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  {
+                    title: "the financial squeeze",
+                    subtitle: "high mortgages & taxes",
+                    desc: "living here is incredibly expensive. between climbing interest rates, massive mortgages, and the heavy tax hit on hard-earned income, families are financially stretched to the absolute limit. every dollar has to count."
+                  },
+                  {
+                    title: "the coaching college pipeline",
+                    subtitle: "drill and repeat",
+                    desc: "because the stakes feel so high, epping has become a pressure cooker of endless tutoring, extra classes, and weekend drilling. parents are sacrificing their time, weekends, and thousands of dollars to push their kids toward a top ATAR score. it feels like the only safe bet left."
+                  },
+                  {
+                    title: "the AI blindspot",
+                    subtitle: "devaluation of basic skills",
+                    desc: "while you are pouring resources into helping your child memorize formulas and write standard essays, technology changed the rules of the game. tools like ChatGPT and others can now do that basic work instantly. the very skills families are sacrificing their savings to drill into their children are the exact skills that are losing their value in the real world."
+                  }
+                ].map((item, idx) => (
+                  <div 
+                    key={idx} 
+                    className="p-6 md:p-8 bg-[#ece6dd]/45 border border-[#a67958]/20 rounded-none flex flex-col justify-between space-y-4 hover:border-[#a67958]/40 duration-200 shadow-[0_4px_20px_rgba(27,22,19,0.03)]"
+                  >
+                    <div className="space-y-1">
+                      <span className="font-mono text-[9px] text-[#a67958]/80 font-bold block">0{idx + 1}</span>
+                      <h4 className="text-lg font-sans font-bold text-[#231e1a] leading-tight lowercase">
+                        {item.title}
+                      </h4>
+                      <p className="text-[10px] font-mono text-[#a67958] tracking-wider uppercase font-medium">
+                        {item.subtitle}
+                      </p>
+                    </div>
+                    <p className="text-xs text-[#231e1a]/80 leading-relaxed lowercase pt-2 border-t border-[#a67958]/10">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-5 bg-red-900/5 border border-red-900/10 text-xs text-[#231e1a]/85 leading-relaxed lowercase max-w-3xl">
+                <strong>this is the trap.</strong> you are working harder than ever, spending more than ever, to prepare your child for a world that is actively disappearing.
+              </div>
+            </motion.div>
+
+            {/* The Skills Gap */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8 max-w-3xl"
+            >
+              <div className="space-y-2">
+                <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                  the skills gap: why the old playbook is breaking
+                </h3>
+              </div>
+
+              <div className="space-y-6 text-xs md:text-sm text-[#231e1a]/85 leading-relaxed lowercase">
+                <p>
+                  the tutoring centers down the road are genuinely good at what they do, but they are preparing your child for the past. they focus on information retrieval—how fast a kid can remember a fact, apply a set formula, and repeat it on an exam paper.
+                </p>
+                <p>
+                  but when your child enters the workforce, they won't be paid to look up answers or repeat memorized facts. a cheap AI tool on a phone will do that for free.
+                </p>
+                <div className="p-6 bg-[#ece6dd]/70 border-l border-[#a67958]/35 space-y-3 italic my-4">
+                  "the real danger today isn't that AI is going to take over the world. the danger is that AI gives answers that sound incredibly confident but are often completely wrong. a child who has only been taught to pass tests will look at a computer screen, blindly trust what it says, and move on."
+                </div>
+                <p>
+                  true survival in the future doesn't come from memorizing more data. it comes from <strong>judgment</strong>. it comes from looking at multiple paths or answers, spotting the errors, and knowing how to double-check the facts against real life.
+                </p>
+                <p className="text-xs font-mono text-[#a67958] font-bold">
+                  * no high school exam measures this. no coaching college drills it. but it is the only skill that makes a young person irreplaceable.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* How We Steer Through the Storm */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
+            >
+              <div className="space-y-2">
+                <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                  how we steer through the storm
+                </h3>
+                <p className="text-xs md:text-sm text-[#231e1a]/70 max-w-2xl lowercase">
+                  we are not here to tell you to stop worrying about school or to drop out of the system. we live in the real world, and we know that grades still matter for getting through the university door. but we believe your child needs an insurance policy for the world after the exams.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  {
+                    title: "we turn tech into a hard skill",
+                    desc: "instead of letting kids get distracted by public cloud apps that track their data and harvest their information, we help families set up their own private computer server right at home. when connection drops happen or software needs adjusting, the teenager has to build it, manage it, and fix it from scratch. that is how real tech resilience is built."
+                  },
+                  {
+                    title: "we teach the \"audit-first\" mindset",
+                    desc: "we train teenagers to treat every computer output as a rough draft that needs a human eye. they learn to question the machine, find hidden insights, and verify facts instead of being passively led by a screen."
+                  },
+                  {
+                    title: "we reclaim lost time",
+                    desc: "instead of letting your child drown in hundreds of hours of repetitive study chores, layout formatting, and basic school prep, we show them how to safely delegate those tasks to local tools on their server. this frees up their energy for high-level thinking and actual strategy."
+                  }
+                ].map((item, idx) => (
+                  <div 
+                    key={idx} 
+                    className="p-6 md:p-8 bg-[#ece6dd] border border-[#a67958]/20 flex flex-col justify-start space-y-4 hover:border-[#a67958]/35 duration-200"
+                  >
+                    <div className="space-y-1">
+                      <span className="font-mono text-[8.5px] text-[#a67958] font-bold block">[ shift 0{idx + 1} ]</span>
+                      <h4 className="text-base font-sans font-bold text-[#231e1a] leading-tight lowercase">
+                        {item.title}
+                      </h4>
+                    </div>
+                    <p className="text-xs text-[#231e1a]/80 leading-relaxed lowercase">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* You Do Not Have To Hide The Panic */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="p-8 md:p-12 bg-[#ece6dd]/30 border border-[#a67958]/30 max-w-4xl space-y-6"
+            >
+              <div className="space-y-1">
+                <h4 className="text-xl md:text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                  you do not have to hide the panic
+                </h4>
+              </div>
+              
+              <div className="space-y-4 text-xs md:text-sm text-[#231e1a]/80 leading-relaxed lowercase">
+                <p>
+                  the hardest part of this perfect storm is feeling like you have to have all the answers. you don't. nobody sent out a manual for how to parent in the age of artificial intelligence while managing a modern mortgage.
+                </p>
+                <p>
+                  the most powerful thing you can do for your child right now is to stop pretending you have it all figured out.
+                </p>
+                <p className="font-medium text-[#231e1a]">
+                  when a parent sits down with their teenager, looks at a piece of technology, and says, "i don't fully understand how this changes things either, but we are going to learn how to work with this tool together as a team," something massive shifts. the pressure lifts, and the real learning begins.
+                </p>
+                <p className="text-[#a67958] font-medium pt-2 border-t border-[#a67958]/15">
+                  you cannot stop the storm, but you can change how your family prepares for it. let's bring the tools home, take the data back into our own hands, and build the judgment your child actually needs to thrive.
+                </p>
+              </div>
+            </motion.div>
+
+          </div>
 
           {/* Spacer */}
           <div className="h-16 md:h-24 w-full" />
@@ -606,41 +775,157 @@ const ChildPage = () => {
             </div>
           </div>
 
-          {/* Centered Dynamic Title block underneath matching homepage style */}
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            key={`title-${currentIndex}`}
-            transition={{ duration: 0.8 }}
-            className="mt-12 text-center"
-          >
-            <span className="font-mono text-[9px] uppercase tracking-[0.45em] text-[#a67958]/80 font-bold block mb-3">
-              {CHILD_SLIDES[currentIndex].tag}
-            </span>
-            <h1 className="text-3xl md:text-5xl font-sans font-bold text-[#231e1a] tracking-tight lowercase mb-4 max-w-2xl mx-auto px-4">
-              {CHILD_SLIDES[currentIndex].title}
-            </h1>
-          </motion.div>
-
           {/* Thin space separated section wrapper */}
           <div className="h-16 md:h-24 w-full" />
 
-          <motion.div 
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] border border-[#a67958]/35 bg-[#ece6dd] aspect-video relative z-10"
-          >
-            <iframe
-              src="https://www.youtube.com/embed/qU0OYPNC5qE?autoplay=1&mute=1&loop=1&playlist=qU0OYPNC5qE&playsinline=1"
-              title="PsyLife Exploration Video"
-              className="absolute top-0 left-0 w-full h-full border-0 scale-[1.02]"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            />
-            {/* Very soft bottom shadow at the bottom boundary */}
-            <div className="absolute bottom-0 inset-x-0 h-4 bg-gradient-to-t from-[#1b1613]/5 to-transparent pointer-events-none z-10" />
-          </motion.div>
+          {/* Teenager Narrative - The View from My Desk */}
+          <div className="w-full max-w-4xl mx-auto space-y-16 md:space-y-24 relative z-10 text-left">
+            
+            {/* Intro Context card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6 max-w-3xl"
+            >
+              <div className="h-[1px] w-12 bg-[#a67958]/35" />
+              <div className="space-y-1">
+                <h2 className="text-3xl md:text-5xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                  the view from my desk
+                </h2>
+                <p className="text-xs font-mono text-[#a67958] uppercase tracking-wider font-semibold">
+                  if you actually opened my bedroom door
+                </p>
+              </div>
+
+              <div className="p-6 bg-[#ece6dd]/55 border border-[#a67958]/20 space-y-4">
+                <span className="font-mono text-[8px] uppercase tracking-wider text-[#a67958]/80 font-bold block">
+                  to anyone across the hallway who thinks we have it easy
+                </span>
+                <p className="text-sm md:text-base font-sans text-[#231e1a]/95 leading-relaxed lowercase">
+                  you look at me and see someone who has everything handed to them. i have a phone that can find any answer, apps that do half the work, and instant entertainment. you think because my fingers move fast across a screen, i’ve got life figured out.
+                </p>
+                <p className="text-sm md:text-base font-sans text-[#231e1a]/95 leading-relaxed lowercase font-medium">
+                  but if you actually sat in my chair, looked at my feeds, and felt the constant buzz in my pocket, you’d realize my room isn't a hiding spot. it’s a pressure cooker.
+                </p>
+              </div>
+
+              <p className="text-[#a67958] text-xs md:text-sm font-semibold lowercase">
+                nobody sent a memo about how much it sucks to grow up right now. this is what is actually going on in my head while i’m staring at my wall, trying to breathe.
+              </p>
+            </motion.div>
+
+            {/* My Five Biggest Problems - Beautiful responsive card list */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
+            >
+              <div className="space-y-2">
+                <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                  my five biggest problems
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  {
+                    num: "01",
+                    prob: "i don't even know what i'm training for",
+                    sub: "uncertainty of the future",
+                    desc: "you keep telling me to study hard so i can get a stable job, but then i look at the news. AI can write essays, solve code, and do math better and faster than i ever will. i sit at my desk doing this repetitive schoolwork, copying formulas and memorizing facts, and all i can think is: a machine does this for free. why am i doing this? what is left for me to do? it feels like i’m being forced to run a race toward a finish line that might disappear before i even graduate."
+                  },
+                  {
+                    num: "02",
+                    prob: "the house feels like a giant rubber band ready to snap",
+                    sub: "stress at home",
+                    desc: "you think you’re hiding it, but i see it. i feel the tight energy in the kitchen. i know how much the mortgage costs, i know living here is brutal, and i see the look on your face when the bills come. worst of all, i know exactly how much money and time you are spending on coaching colleges and extra tutoring for me. every dollar you spend on my classes feels like a massive loan i have to pay back with my grades. i carry your financial stress around like it’s my fault. it makes me feel like a massive, expensive burden."
+                  },
+                  {
+                    num: "03",
+                    prob: "the noise never, ever stops",
+                    sub: "peer pressure",
+                    desc: "when you were a kid, if you had a terrible day or got embarrassed at school, you could come home, shut your door, and it was over. for me, school never ends. it lives in my pocket. the group chats, the photo shares, the social feeds—they follow me into bed at 2:00 AM. i am constantly on display. if i miss a message, i'm left out. if i post the wrong thing, it’s screenshotted. i am constantly comparing my real, messy, boring life to everyone else's fake, perfect highlights online. i am surrounded by people digits-wise, but i feel completely alone."
+                  },
+                  {
+                    num: "04",
+                    prob: "my own brain is fighting me",
+                    sub: "biological changes",
+                    desc: "half the time, i don’t even know why i’m angry or why i feel like crying. my body is changing, my brain is literally rewiring itself, and my chemistry is fluctuating every single hour. i get these massive waves of anxiety and self-doubt out of nowhere. i am trying to figure out who i am supposed to be, but it’s hard to build an identity when your own biological hardware is melting down under the surface. i feel uncomfortable in my own skin, and i hate it."
+                  },
+                  {
+                    num: "05",
+                    prob: "i am terrified of letting you down",
+                    sub: "expectations",
+                    desc: "because i know how hard you work, and because i see what you sacrifice for me, i am paralyzed by the fear of failing. to me, getting a bad mark or dropping a rank doesn't just mean a bad grade on a piece of paper—it feels like i am personally failing you. it feels like i’m wasting your life savings. everyone talks about the ATAR like it’s the only thing that matters, and it makes me feel like my entire value as a person depends on a four-digit number. if i don't get it, i feel like my life is over before it even started."
+                  }
+                ].map((item, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`p-6 md:p-8 bg-[#ece6dd]/45 border border-[#a67958]/20 rounded-none flex flex-col justify-between space-y-4 hover:border-[#a67958]/40 duration-200 shadow-[0_4px_25px_rgba(27,22,19,0.03)] ${
+                      idx === 4 ? "md:col-span-2 max-w-2xl mx-auto md:w-full" : ""
+                    }`}
+                  >
+                    <div className="space-y-1">
+                      <span className="font-mono text-[9px] text-[#a67958] font-bold block">{item.num}</span>
+                      <h4 className="text-base md:text-lg font-sans font-bold text-[#231e1a] leading-tight lowercase">
+                        {item.prob}
+                      </h4>
+                      <p className="text-[10px] font-mono text-[#a67958] tracking-wider uppercase font-medium">
+                        {item.sub}
+                      </p>
+                    </div>
+                    <p className="text-xs text-[#231e1a]/80 leading-relaxed lowercase pt-3 border-t border-[#a67958]/10">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* What I Actually Need From You */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="p-8 md:p-12 bg-[#ece6dd]/30 border border-[#a67958]/30 max-w-4xl space-y-6"
+            >
+              <div className="space-y-1">
+                <h4 className="text-xl md:text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                  what i actually need from you
+                </h4>
+              </div>
+
+              <div className="space-y-4 text-xs md:text-sm text-[#231e1a]/80 leading-relaxed lowercase">
+                <p>
+                  when these five walls are closing in on me, the last thing that helps is being told to "just study harder" or getting another lecture about my future. that just turns up the heat.
+                </p>
+                <p>
+                  i don't need you to give me another practice exam. and i definitely don't want another cloud app tracking my data or making me feel anxious.
+                </p>
+                <div className="p-4 bg-[#ece6dd] border border-[#a67958]/20 rounded-none text-center italic my-3 text-xs md:text-sm text-[#231e1a] font-medium">
+                  "i need a release valve."
+                </div>
+                <p>
+                  i need to stop just scrolling through public digital garbage and actually build something real. running a physical server right here at home gives me something i can actually control. when a connection drops or the system needs to be fixed, let me handle it. let me figure out how the real world works, not just the school workspace. show me how to use these AI tools to automate the boring, repetitive study chores so i can get some sleep, move my body, and actually have time to be a kid.
+                </p>
+                <p className="font-medium text-[#231e1a] pt-3 border-t border-[#a67958]/15">
+                  but mostly, i just need you to come in, sit down at the table next to me, and admit that this world is confusing for you, too.
+                </p>
+                <p className="text-[#a67958] font-semibold">
+                  when you stop pretending to have all the answers and say, "hey, i don't know how this AI stuff changes things either, but let's work it out together," the weight drops off my shoulders. i don't feel like a disappointment anymore. i feel like we're a team.
+                </p>
+                <p className="text-xs font-mono text-[#a67958]/80 font-bold uppercase tracking-wider pt-2 block">
+                  stop pushing me down the old path. let's learn how to choose the right one together.
+                </p>
+              </div>
+            </motion.div>
+
+          </div>
 
           {/* Thin space separated section wrapper */}
           <div className="h-16 md:h-24 w-full" />
@@ -877,7 +1162,7 @@ const ProductsPage = () => {
                           Any Device, Anytime across your Private Home Network
                         </h5>
                         <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                          Your child can securely connect to their private AI from any device—laptop, phone, or tablet—anytime they are on your private home network. It provides ultimate privacy for deep focus and study right at home.
+                          Your child can securely connect to their private AI from any device—laptop, phone, or tablet—anytime they are on your private home network. It provides complete privacy for deep focus and study right at home.
                         </p>
                       </div>
 

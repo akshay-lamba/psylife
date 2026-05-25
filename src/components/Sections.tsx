@@ -932,6 +932,32 @@ export const HowToFixSection = () => {
           ))}
         </div>
 
+        {/* PDF Download CTA block */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-16 p-8 md:p-12 bg-[#dfd5c8]/30 border border-[#a67958]/20 flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+        >
+          <div className="space-y-2 max-w-2xl text-left">
+            <h3 className="text-xl md:text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+              realization: validating the realization of focus
+            </h3>
+            <p className="text-xs md:text-sm text-[#231e1a]/80 leading-relaxed lowercase font-normal">
+              our framework details how we help the developing mind build durable evaluation muscles—enabling your child to master their attention and coordinate complex workflows independently.
+            </p>
+          </div>
+          <a
+            href="https://b2006858-57c1-480a-9730-8e9f2057acb9.usrfiles.com/ugd/b20068_00cbc29729da47b8be8779b64433abc0.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-6 py-3 bg-[#a67958] text-[#dfd5c8] hover:bg-[#231e1a] duration-300 font-sans text-xs font-bold uppercase tracking-wider h-11 shrink-0"
+          >
+            learn more
+          </a>
+        </motion.div>
+
       </div>
     </Section>
   );
