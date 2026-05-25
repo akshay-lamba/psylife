@@ -40,7 +40,7 @@ export const Hero = ({ title, subtitle, images = HERO_IMAGES, youtubeId }: { tit
     <section className="matte-texture min-h-[75vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24 px-4 md:px-8 relative w-full">
       {/* Subtle theme-color backlight glow (#a67c52 / var(--primary)) */}
       <motion.div 
-        className="absolute w-full max-w-4xl aspect-[4/3] md:aspect-[16/10] rounded-2xl md:rounded-[2rem] bg-primary/10 blur-[100px] pointer-events-none z-0 mix-blend-screen"
+        className="absolute w-full max-w-4xl aspect-video rounded-none bg-primary/10 blur-[100px] pointer-events-none z-0 mix-blend-screen"
         animate={{
           scale: isHovered ? 1.05 : 0.96,
           opacity: isHovered ? 0.6 : 0.35,
@@ -50,11 +50,11 @@ export const Hero = ({ title, subtitle, images = HERO_IMAGES, youtubeId }: { tit
 
       <div className="max-w-4xl mx-auto w-full relative z-10 flex flex-col items-center">
         <motion.div 
-          className="relative w-full aspect-[4/3] md:aspect-[16/10] z-10 group cursor-crosshair"
+          className="relative w-full aspect-video z-10 group cursor-crosshair"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="absolute inset-0 rounded-2xl md:rounded-[2rem] overflow-hidden border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)]">
+          <div className="absolute inset-0 rounded-none overflow-hidden border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)]">
             {youtubeId ? (
               <iframe
                 src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&playsinline=1`}
@@ -83,7 +83,7 @@ export const Hero = ({ title, subtitle, images = HERO_IMAGES, youtubeId }: { tit
                   <img 
                     src={images[currentSlide]} 
                     alt="immersive environment"
-                    className="w-full h-full object-cover relative z-10 select-none block"
+                    className="w-full h-full object-contain relative z-10 select-none block"
                     referrerPolicy="no-referrer"
                   />
                 </motion.div>
@@ -128,7 +128,6 @@ export const splitSection = (num: string, label: string, title: string, desc: st
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
       >
-        <span className="text-[9px] lowercase tracking-[0.4em] text-primary mb-6 block">{num} / {label}</span>
         <h2 className="text-6xl font-sans font-bold mb-8 metallic-text lowercase">{title}</h2>
         <p className="text-[#231e1a]/70 text-sm leading-loose max-w-sm lowercase">
           {desc}
@@ -291,7 +290,6 @@ export const RealizationChart = () => (
   <Section className="bg-background relative overflow-hidden">
     <div className="grid lg:grid-cols-12 gap-16 items-center">
       <div className="lg:col-span-5 space-y-8">
-        <span className="text-[9px] lowercase tracking-[0.4em] text-primary/60 block">02 / metrics</span>
         <h2 className="text-5xl md:text-6xl font-sans font-bold leading-tight tracking-tight metallic-text lowercase">
           validating the realization.
         </h2>
@@ -396,7 +394,6 @@ export const PublicationDownload = () => (
         transition={{ duration: 1.2 }}
         className="space-y-8"
       >
-        <span className="text-[9px] lowercase tracking-[0.6em] text-primary block">03 / interactive guide</span>
         <h2 className="text-5xl md:text-6xl font-sans font-bold leading-tight tracking-tight metallic-text lowercase">
           a choice for your family's future.
         </h2>
@@ -526,7 +523,6 @@ export const ArchitectSection = () => (
       </div>
 
       <div className="lg:col-span-6 space-y-8 order-1 lg:order-2">
-        <span className="text-[9px] lowercase tracking-[0.4em] text-primary/60 block">04 / systemic philosophy</span>
         <h2 className="text-5xl md:text-6xl font-sans font-bold leading-tight tracking-tight metallic-text lowercase">
           we don't teach. we architect.
         </h2>
@@ -558,7 +554,6 @@ export const FlowProtocolSection = () => {
       <div className="grid lg:grid-cols-2 gap-20 items-center">
         <div className="space-y-12">
           <div className="space-y-4">
-            <span className="text-[9px] lowercase tracking-[0.4em] text-primary block">05 / protocol</span>
             <h2 className="text-5xl md:text-6xl font-sans font-bold leading-tight tracking-tight metallic-text lowercase">
               the flow protocol.
             </h2>
@@ -720,29 +715,225 @@ export const ctaSection = (title: string, desc: string, btn: string) => (
 );
 
 // --- Youtube Video Section (Section 2) ---
-export const YoutubeSection = () => (
-  <Section className="bg-[#dfd5c8] relative overflow-hidden py-12 md:py-16 border-t border-[#a67958]/12">
-    {/* Soft primary glow */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] md:w-[45vw] aspect-video rounded-full bg-primary/10 blur-[120px] pointer-events-none z-0" />
+export const YoutubeSection = () => {
+  return (
+    <Section className="bg-[#dfd5c8] text-[#231e1a] relative overflow-hidden py-16 border-t border-[#a67958]/12">
+      {/* Soft primary ambient backlight for a warm, cozy feel */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] aspect-square rounded-full bg-primary/5 blur-[120px] pointer-events-none z-0" />
 
-    <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center px-4 md:px-0">
-      {/* Responsive Elegant Cinematic Video Frame */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        className="w-full aspect-video rounded-[32px] md:rounded-[40px] overflow-hidden border border-[#a67958]/15 glass bg-[#231e1a]/60 shadow-2xl relative"
-      >
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/lH4QkrgLuCI?autoplay=0&rel=0&modestbranding=1"
-          title="psylife | architectural intelligence"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="w-full h-full border-0 absolute inset-0 z-10"
-        ></iframe>
-      </motion.div>
-    </div>
-  </Section>
-);
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          
+          {/* Left Column: Compact Video Frame & Context */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+            <div className="space-y-3 col-title text-left">
+              <h2 className="text-3xl font-sans font-bold leading-tight tracking-tight text-[#231e1a] lowercase">
+                real talk for epping families
+              </h2>
+              <p className="text-[#231e1a]/60 text-xs font-mono lowercase">
+                [no marketing talk. just the reality of the learning landscape.]
+              </p>
+            </div>
+
+            {/* Compact rectangular Video player */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="w-full aspect-video rounded-none overflow-hidden border border-[#a67958]/25 bg-[#231e1a]/60 shadow-[0_20px_50px_rgba(27,22,19,0.15)] relative"
+            >
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/lH4QkrgLuCI?autoplay=0&rel=0&modestbranding=1"
+                title="psylife | architectural intelligence"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full border-0 absolute inset-0"
+              ></iframe>
+            </motion.div>
+
+            <div className="p-4 bg-[#ece6dd]/60 border border-[#a67958]/15 text-[10.5px] text-[#231e1a]/60 lowercase italic leading-relaxed text-left">
+              * we do not replace school curricula; we construct the physical and attention coordinates required to make them work.
+            </div>
+          </div>
+
+          {/* Right Column: Direct Parent Diagnosis (The 3 Generations of Getting Ahead) */}
+          <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
+            <div className="space-y-2 text-left">
+              <h3 className="text-lg font-sans font-bold text-[#231e1a] lowercase">
+                what is actually happening right now?
+              </h3>
+              <p className="text-[#231e1a]/85 text-xs md:text-sm leading-relaxed lowercase">
+                the way people get ahead in life has completely shifted across three generations, but the school system and local tutoring centers are still using an old playbook:
+              </p>
+            </div>
+
+            {/* The Timeline Blocks */}
+            <div className="space-y-3 text-left">
+              <div className="p-4 bg-[#ece6dd]/50 border border-[#a67958]/15 flex gap-4 items-start duration-200 hover:border-[#a67958]/35">
+                <span className="font-mono text-xs text-primary/70 pt-0.5">01</span>
+                <div className="space-y-0.5">
+                  <span className="text-xs font-sans font-bold text-[#231e1a] block lowercase">the library era (generation 1)</span>
+                  <p className="text-xs text-[#231e1a]/70 leading-relaxed lowercase">
+                    getting ahead meant <strong>memorization</strong>. books were hard to find, so the kid who could remember the most facts won.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 bg-[#ece6dd]/50 border border-[#a67958]/15 flex gap-4 items-start duration-200 hover:border-[#a67958]/35">
+                <span className="font-mono text-xs text-primary/70 pt-0.5">02</span>
+                <div className="space-y-0.5">
+                  <span className="text-xs font-sans font-bold text-[#231e1a] block lowercase">the internet era (generation 2)</span>
+                  <p className="text-xs text-[#231e1a]/70 leading-relaxed lowercase">
+                    getting ahead meant <strong>searching</strong>. facts became free on google. the kid who could find information fast and filter bad sites won. most parents today grew up in this era.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 bg-primary/5 border border-primary/20 flex gap-4 items-start relative overflow-hidden">
+                <span className="font-mono text-xs text-primary pt-0.5 font-bold animate-pulse">03</span>
+                <div className="space-y-0.5">
+                  <span className="text-xs font-sans font-bold text-primary block lowercase">the AI era (generation 3 - right now)</span>
+                  <p className="text-xs text-[#231e1a]/90 leading-relaxed lowercase font-medium">
+                    finding information is no longer a skill. AI gives instant, clear answers. but AI gives different answers depending on prompt design and is often confidently wrong.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 bg-[#ece6dd] border-l-2 border-primary/30 italic lowercase text-[#231e1a]/85 text-xs leading-relaxed text-left">
+              being smart today doesn’t mean knowing or finding things. it means looking at ten different answers and having the judgment to <strong>choose the right one and double-check it</strong>.
+            </div>
+          </div>
+
+        </div>
+
+        {/* Central Card with Subtle 3D Glassy Finish */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-12 bg-[#ece6dd]/20 backdrop-blur-md border border-[#a67958]/35 p-8 md:p-10 relative overflow-hidden shadow-[0_30px_70px_rgba(27,22,19,0.12),_inset_0_1px_2px_rgba(255,255,255,0.45)] cursor-default"
+        >
+          {/* Subtle glassy gradient overlay for 3D depth */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#ece6dd]/10 via-transparent to-[#ece6dd]/20 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#a67958]/20 to-transparent" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-4 space-y-2 border-b md:border-b-0 md:border-r border-[#a67958]/20 pb-6 md:pb-0 md:pr-8 text-left">
+              <span className="inline-block px-2 py-0.5 text-[8px] tracking-widest bg-red-900/10 text-red-900 border border-red-900/15 font-mono uppercase">
+                the epping crisis
+              </span>
+              <h3 className="text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                the ATAR trap
+              </h3>
+            </div>
+            <div className="md:col-span-8 space-y-4 text-left">
+              <p className="text-[#231e1a]/85 text-xs md:text-sm lg:text-[14.5px] leading-relaxed lowercase font-normal">
+                most parents in epping are caught in a financial and emotional pressure cooker. because the future feels unpredictable, they default to the only clear goal they know: <strong className="font-semibold text-[#a67958]">the ATAR score</strong>.
+              </p>
+              <p className="text-[#231e1a]/70 text-xs md:text-sm leading-relaxed lowercase">
+                they spend thousands on coaching colleges and weekend tutoring. this drilling helps kids memorize content to pass exam papers. but that training is built for generation 2—it teaches kids to be passive consumers. it does not teach them how to think when they face a world where machines do the basic work.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+      </div>
+    </Section>
+  );
+};
+
+// --- How To Fix Section (Section 3) ---
+export const HowToFixSection = () => {
+  const cards = [
+    {
+      num: "01",
+      tag: "infrastructure",
+      title: "bring the tech home",
+      desc: "instead of letting kids get distracted by cloud apps that track their data, families can run their own private computer server right at home. this keeps data safe and forces the teenager to learn how real systems work. when a local connection drops or software needs tweaking, they have to fix it themselves. that is a real-world problem-solving skill."
+    },
+    {
+      num: "02",
+      tag: "integrity",
+      title: "learn to audit, not just trust",
+      desc: "kids must be trained to never blindly trust a computer's output. they need to treat AI text as a rough first draft that requires a human to check the facts and evaluate logical continuity."
+    },
+    {
+      num: "03",
+      tag: "efficiency",
+      title: "save time on chores",
+      desc: "instead of spending hundreds of hours on repetitive study tasks, note-taking, and school prep, teenagers can use local automation tools to do the heavy lifting. this frees up their time to focus on deep understanding and actual strategy."
+    },
+    {
+      num: "04",
+      tag: "alignment",
+      title: "do it together",
+      desc: "the goal isn't to replace school or ignore the ATAR. the goal is to build an insurance policy for after the exams. the best way a child learns tech resilience is by watching their parents sit down next to them, look at these new tools, and figure out how they work together as a team."
+    }
+  ];
+
+  return (
+    <Section className="bg-[#ece6dd] text-[#231e1a] relative overflow-hidden py-24 border-b border-[#a67958]/12">
+      {/* Soft warm background light */}
+      <div className="absolute bottom-0 right-0 w-[45vw] aspect-square rounded-full bg-primary/5 blur-[100px] pointer-events-none z-0" />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        
+        {/* Header Block */}
+        <div className="max-w-3xl space-y-4 mb-16">
+          <h2 className="text-4xl md:text-5xl font-sans font-bold leading-none tracking-tight text-[#231e1a] lowercase">
+            how to fix it.
+          </h2>
+          <p className="text-[#231e1a]/70 text-base leading-relaxed max-w-2xl lowercase">
+            instead of trying to compete with fast technology, teenagers need to learn how to manage it. this is done by shifting from a high school memorization mindset to a practical, hands-on family workspace.
+          </p>
+        </div>
+
+        {/* Clean, Modular Card Grid - 100% Rectangular, Wellness & Minimalism Aesthetics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {cards.map((card, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: idx * 0.1, ease: "easeOut" }}
+              className="group relative bg-[#dfd5c8]/30 hover:bg-[#dfd5c8]/50 border border-[#a67958]/15 p-8 md:p-10 flex flex-col justify-between transition-all duration-300 rounded-none cursor-default shadow-sm"
+            >
+              {/* Subtle accent hover indicator - elegant and thin */}
+              <div className="absolute top-0 left-0 w-[2px] h-0 bg-primary group-hover:h-full transition-all duration-300" />
+              
+              <div className="space-y-6">
+                {/* Meta details */}
+                <div className="flex justify-between items-center border-b border-[#a67958]/12 pb-4">
+                  <span className="text-xs font-mono text-primary font-bold">{card.num}</span>
+                  <span className="text-[9px] lowercase font-mono tracking-widest text-[#231e1a]/50">[ {card.tag} ]</span>
+                </div>
+
+                {/* Card Title */}
+                <h3 className="text-xl md:text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
+                  {card.title}
+                </h3>
+
+                {/* Card Description */}
+                <p className="text-xs md:text-sm text-[#231e1a]/75 leading-relaxed lowercase font-normal">
+                  {card.desc}
+                </p>
+              </div>
+
+              {/* Minimalist interactive label */}
+              <div className="pt-6 flex items-center justify-between text-[10px] font-mono text-primary/0 group-hover:text-primary/70 transition-all duration-300 lowercase">
+                <span>practical integration coordinate</span>
+                <span>→</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
+    </Section>
+  );
+};
 

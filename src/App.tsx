@@ -9,7 +9,8 @@ import {
   featureSection, 
   listSection, 
   ctaSection,
-  YoutubeSection
+  YoutubeSection,
+  HowToFixSection
 } from "./components/Sections";
 import { Footer } from "./components/Footer";
 import { SEO } from "./components/SEO";
@@ -60,6 +61,7 @@ const HomePage = () => (
     />
     <Hero title="psylife.shop" subtitle="Family | Fun | Foundations" />
     <YoutubeSection />
+    <HowToFixSection />
   </>
 );
 
@@ -154,7 +156,7 @@ const ParentPage = () => {
           >
             {/* Ambient backlight glow matching homepage */}
             <motion.div 
-              className="absolute inset-0 rounded-[2rem] bg-primary/10 blur-[60px] pointer-events-none z-0 mix-blend-screen"
+              className="absolute inset-0 rounded-none bg-primary/10 blur-[60px] pointer-events-none z-0 mix-blend-screen"
               animate={{
                 scale: isHovered ? 1.05 : 0.96,
                 opacity: isHovered ? 0.6 : 0.35,
@@ -162,7 +164,7 @@ const ParentPage = () => {
               transition={{ duration: 1, ease: "easeOut" }}
             />
 
-            <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-2xl md:rounded-[2rem] border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
+            <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-none border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
               <div className="w-full h-full relative overflow-hidden flex-1">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -521,7 +523,7 @@ const ChildPage = () => {
           <div className="relative w-full z-10 group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
             {/* Subtle backlight glow */}
             <motion.div 
-              className="absolute inset-0 rounded-[2rem] bg-primary/10 blur-[60px] pointer-events-none z-0 mix-blend-screen"
+              className="absolute inset-0 rounded-none bg-primary/10 blur-[60px] pointer-events-none z-0 mix-blend-screen"
               animate={{
                 scale: isHovered ? 1.05 : 0.96,
                 opacity: isHovered ? 0.6 : 0.35,
@@ -530,7 +532,7 @@ const ChildPage = () => {
             />
 
             {/* Our brown frame */}
-            <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-2xl md:rounded-[2rem] border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
+            <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-none border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
               <div className="w-full h-full relative overflow-hidden flex-1">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -701,7 +703,7 @@ const ProductsPage = () => {
           >
             {/* Subtle backlight glow */}
             <motion.div 
-              className="absolute inset-0 rounded-[2rem] bg-primary/10 blur-[60px] pointer-events-none z-0 mix-blend-screen"
+              className="absolute inset-0 rounded-none bg-primary/10 blur-[60px] pointer-events-none z-0 mix-blend-screen"
               animate={{
                 scale: isHovered ? 1.05 : 0.96,
                 opacity: isHovered ? 0.6 : 0.35,
@@ -709,7 +711,7 @@ const ProductsPage = () => {
               transition={{ duration: 1, ease: "easeOut" }}
             />
 
-            <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-2xl md:rounded-[2rem] border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
+            <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-none border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
               <div className="w-full h-full relative overflow-hidden flex-1">
                 {/* Blurred Backdrop for seamless look when aspect ratios don't match */}
                 <img 
@@ -1110,7 +1112,7 @@ const ProductsPage = () => {
                     <div className="grid grid-cols-2 gap-3">
                       {[
                         { label: "duration", value: "strictly 5 days long" },
-                        { label: "location", value: "Blue Mountains, NSW (Bali available)" },
+                        { label: "location", value: "Blue Mountains, NSW" },
                         { label: "cohort limit", value: "max 5 families (strictly capped)" },
                         { label: "audience type", value: "parent-child strategic partners" }
                       ].map((item, idx) => (
@@ -1505,7 +1507,7 @@ const LearningPage = () => {
           >
             {/* Ambient backlight glow matching homepage */}
             <motion.div 
-              className="absolute inset-0 rounded-[2rem] bg-primary/10 blur-[60px] pointer-events-none z-0 mix-blend-screen"
+              className="absolute inset-0 rounded-none bg-primary/10 blur-[60px] pointer-events-none z-0 mix-blend-screen"
               animate={{
                 scale: isHovered ? 1.05 : 0.96,
                 opacity: isHovered ? 0.6 : 0.35,
@@ -1513,7 +1515,7 @@ const LearningPage = () => {
               transition={{ duration: 1, ease: "easeOut" }}
             />
 
-            <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-2xl md:rounded-[2rem] border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
+            <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-none border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
               <div className="w-full h-full relative overflow-hidden flex-1">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -1954,9 +1956,9 @@ const LearningPage = () => {
                 )}
 
                 {activeFormat === "slides" && (
-                  <div id="slides-deck-blocks" className="w-full p-4 md:p-6 rounded-[2.5rem] border border-[#a67958]/25 bg-[#ece6dd]/85 shadow-lg flex flex-col gap-6">
+                  <div id="slides-deck-blocks" className="w-full p-4 md:p-6 rounded-none border border-[#a67958]/25 bg-[#ece6dd]/85 shadow-lg flex flex-col gap-6">
                     {/* Active Mini-slide rendering node */}
-                    <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-[#a67958]/35 bg-[#ece6dd] shadow-inner p-8 flex flex-col justify-between">
+                    <div className="relative w-full aspect-[16/10] rounded-none overflow-hidden border border-[#a67958]/35 bg-[#ece6dd] shadow-inner p-8 flex flex-col justify-between">
                       {/* Blueprint grid coordinates for design style */}
                       <div className="absolute inset-0 pointer-events-none opacity-5 overflow-hidden">
                         <svg viewBox="0 0 100 100" className="w-full h-full text-[#a67958]">
