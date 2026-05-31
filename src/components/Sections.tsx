@@ -945,7 +945,7 @@ export const HowToFixSection = () => {
               realization: validating the realization of focus
             </h3>
             <p className="text-xs md:text-sm text-[#231e1a]/80 leading-relaxed lowercase font-normal">
-              our framework details how we help the developing mind build durable evaluation muscles—enabling your child to master their attention and coordinate complex workflows independently.
+              our framework details how we help the developing mind build durable evaluation muscles—enabling your child to foster their attention and coordinate complex workflows independently.
             </p>
           </div>
           <a

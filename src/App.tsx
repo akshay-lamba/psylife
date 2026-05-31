@@ -14,6 +14,8 @@ import {
 } from "./components/Sections";
 import { Footer } from "./components/Footer";
 import { SEO } from "./components/SEO";
+import { InteractivePdfCard } from "./components/InteractivePdfCard";
+import { LearningPage } from "./pages/LearningPage";
 
 const MouseGlow = () => {
   const mouseX = useMotionValue(0);
@@ -278,10 +280,7 @@ const ParentPage = () => {
               className="space-y-8"
             >
               <div className="space-y-2">
-                <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
-                  the three walls closing in
-                </h3>
-                <p className="text-xs md:text-sm text-[#231e1a]/60 lowercase">
+                <p className="text-xs md:text-sm text-[#231e1a]/60 lowercase font-medium">
                   when you look at your family budget and your child’s future today, you are fighting a battle on three separate fronts:
                 </p>
               </div>
@@ -337,12 +336,6 @@ const ParentPage = () => {
               transition={{ duration: 0.8 }}
               className="space-y-8 max-w-3xl"
             >
-              <div className="space-y-2">
-                <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
-                  the skills gap: why the old playbook is breaking
-                </h3>
-              </div>
-
               <div className="space-y-6 text-xs md:text-sm text-[#231e1a]/85 leading-relaxed lowercase">
                 <p>
                   the tutoring centers down the road are genuinely good at what they do, but they are preparing your child for the past. they focus on information retrieval—how fast a kid can remember a fact, apply a set formula, and repeat it on an exam paper.
@@ -371,10 +364,7 @@ const ParentPage = () => {
               className="space-y-8"
             >
               <div className="space-y-2">
-                <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
-                  how we steer through the storm
-                </h3>
-                <p className="text-xs md:text-sm text-[#231e1a]/70 max-w-2xl lowercase">
+                <p className="text-xs md:text-sm text-[#231e1a]/70 max-w-2xl lowercase font-medium">
                   we are not here to tell you to stop worrying about school or to drop out of the system. we live in the real world, and we know that grades still matter for getting through the university door. but we believe your child needs an insurance policy for the world after the exams.
                 </p>
               </div>
@@ -422,12 +412,7 @@ const ParentPage = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="space-y-6 lg:col-span-8 text-left">
-                  <div className="space-y-1">
-                    <h4 className="text-xl md:text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
-                      you do not have to hide the panic
-                    </h4>
-                  </div>
-                  
+
                   <div className="space-y-4 text-xs md:text-sm text-[#231e1a]/85 leading-relaxed lowercase">
                     <p>
                       the hardest part of this perfect storm is feeling like you have to have all the answers. you don't. nobody sent out a manual for how to parent in the age of artificial intelligence while managing a modern mortgage.
@@ -458,147 +443,6 @@ const ParentPage = () => {
         </div>
       </div>
     </>
-  );
-};
-
-const InteractivePdfCard = ({
-  pdfUrl = "https://b2006858-57c1-480a-9730-8e9f2057acb9.usrfiles.com/ugd/b20068_5c4276697cce45df9c078b4ec19cf2ba.pdf",
-  imageUrl = "https://static.wixstatic.com/media/b20068_9311a56fd7674097baecf8597e112acd~mv2.jpeg",
-  labelText = "slide to learn",
-  successText = "displaying blueprint..."
-}: {
-  pdfUrl?: string;
-  imageUrl?: string;
-  labelText?: string;
-  successText?: string;
-}) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  // Smooth springs for card rotate X and Y
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), { stiffness: 100, damping: 15 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), { stiffness: 100, damping: 15 });
-
-  // Glossy reflection overlay values
-  const glossX = useTransform(x, [-0.5, 0.5], ["30%", "70%"]);
-  const glossY = useTransform(y, [-0.5, 0.5], ["30%", "70%"]);
-
-  const [sliderCompleted, setSliderCompleted] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left - width / 2;
-    const mouseY = e.clientY - rect.top - height / 2;
-    x.set(mouseX / width);
-    y.set(mouseY / height);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    setIsHovered(false);
-  };
-
-  const triggerDownload = () => {
-    window.open(pdfUrl, "_blank", "noopener,noreferrer");
-  };
-
-  const handleDragEnd = (_e: any, info: any) => {
-    // Width of dragging is constrained to 216px, trigger if dragged past 180px
-    if (info.offset.x > 180) {
-      setSliderCompleted(true);
-      triggerDownload();
-      setTimeout(() => {
-        setSliderCompleted(false);
-      }, 3000);
-    }
-  };
-
-  return (
-    <div className="w-full flex flex-col items-center justify-center p-2 mb-10">
-      {/* Dynamic 3D Perspective Wrapper */}
-      <div className="w-full max-w-sm" style={{ perspective: "1000px" }}>
-        <motion.div
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          onMouseEnter={() => setIsHovered(true)}
-          style={{
-            rotateX,
-            rotateY,
-            transformStyle: "preserve-3d",
-          }}
-          className="relative w-full rounded-2xl md:rounded-[2.2rem] bg-[#ece6dd] border border-[#a67958]/25 shadow-[0_30px_70px_rgba(27,22,19,0.18),0_15px_30px_rgba(27,22,19,0.1)] overflow-hidden p-6 md:p-8 flex flex-col items-center hover:shadow-[0_45px_85px_rgba(166,121,88,0.22),0_15px_30px_rgba(166,121,88,0.12)] group select-none cursor-pointer"
-          onClick={triggerDownload}
-        >
-          {/* Subtle dynamic gloss light highlight effect */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none z-20 mix-blend-overlay opacity-0 group-hover:opacity-30 transition-opacity duration-300"
-            style={{
-              background: `radial-gradient(circle at ${glossX} ${glossY}, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 65%)`,
-            }}
-          />
-
-          {/* Decorative blueprint coordinates in background of card */}
-          <div className="absolute inset-4 border border-dashed border-[#a67958]/10 pointer-events-none z-0 rounded-xl" />
-
-          {/* Beautiful 3D Floating Book/Document Frame */}
-          <motion.div
-            style={{ transform: "translateZ(30px)" }}
-            className="w-full aspect-[4/5] rounded-xl overflow-hidden border border-[#a67958]/15 shadow-2xl relative z-10 mb-5 bg-[#dfd5c8] flex items-center justify-center"
-          >
-            {/* The PDF Document image thumbnail matching requested */}
-            <img
-              src={imageUrl}
-              alt="PDF Document Blueprint Preview"
-              className="w-full h-full object-cover select-none pointer-events-none scale-100 group-hover:scale-[1.02] transition-transform duration-500"
-              referrerPolicy="no-referrer"
-            />
-            {/* Dark gradient overlay for modern editorial feel */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1b1613]/50 via-transparent to-transparent pointer-events-none z-10 opacity-70" />
-            
-            {/* Hover floating download emblem badge overlay */}
-            <div className="absolute inset-0 bg-black/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-15 backdrop-blur-[2px]">
-              <div className="p-4 rounded-full bg-[#ece6dd] text-[#a67958] border border-[#a67958]/20 shadow-lg scale-90 group-hover:scale-100 transition-transform duration-300">
-                <Download size={24} strokeWidth={2} />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* 3D Dynamic Slide-To-Unlock Bar */}
-          <motion.div
-            style={{ transform: "translateZ(20px)" }}
-            className="relative w-full max-w-[280px] h-12 rounded-full bg-[#dfd5c8]/80 border border-[#a67958]/20 p-1 flex items-center overflow-hidden z-20 shadow-inner"
-            onClick={(e) => e.stopPropagation() /* Prevent clicking card trigger */}
-          >
-            {/* Swipe prompt track background text */}
-            <div className="absolute inset-0 flex items-center justify-end pr-8 pointer-events-none select-none">
-              <span className="font-sans text-[9px] uppercase tracking-[0.25em] text-[#a67958]/60 font-bold">
-                {sliderCompleted ? successText : labelText}
-              </span>
-            </div>
-
-            {/* Drag Handle with Framer Motion */}
-            <motion.div
-              drag="x"
-              dragConstraints={{ left: 0, right: 216 }}
-              dragElastic={0.05}
-              onDragEnd={handleDragEnd}
-              whileDrag={{ scale: 1.05 }}
-              className="w-10 h-10 rounded-full bg-[#ece6dd] shadow-md border border-[#a67958]/35 flex items-center justify-center cursor-ew-resize text-[#a67958] hover:text-[#231e1a] hover:bg-[#ece6dd] transition-colors duration-200"
-            >
-              {sliderCompleted ? (
-                <span className="text-emerald-700 font-bold text-xs select-none">✓</span>
-              ) : (
-                <ChevronRight size={18} strokeWidth={2.5} className="animate-pulse" />
-              )}
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </div>
-    </div>
   );
 };
 
@@ -788,14 +632,7 @@ const ChildPage = () => {
               className="space-y-6 max-w-3xl"
             >
               <div className="h-[1px] w-12 bg-[#a67958]/35" />
-              <div className="space-y-1">
-                <h2 className="text-3xl md:text-5xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
-                  the view from my desk
-                </h2>
-                <p className="text-xs font-mono text-[#a67958] uppercase tracking-wider font-semibold">
-                  if you actually opened my bedroom door
-                </p>
-              </div>
+
 
               <div className="p-6 bg-[#ece6dd]/55 border border-[#a67958]/20 space-y-4">
                 <span className="font-mono text-[8px] uppercase tracking-wider text-[#a67958]/80 font-bold block">
@@ -822,12 +659,6 @@ const ChildPage = () => {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              <div className="space-y-2">
-                <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
-                  my five biggest problems
-                </h3>
-              </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   {
@@ -894,12 +725,6 @@ const ChildPage = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="space-y-6 lg:col-span-8 text-left">
-                  <div className="space-y-1">
-                    <h4 className="text-xl md:text-2xl font-sans font-bold text-[#231e1a] tracking-tight lowercase">
-                      what i actually need from you
-                    </h4>
-                  </div>
-
                   <div className="space-y-4 text-xs md:text-sm text-[#231e1a]/85 leading-relaxed lowercase">
                     <p>
                       when these five walls are closing in on me, the last thing that helps is being told to "just study harder" or getting another lecture about my future. that just turns up the heat.
@@ -992,18 +817,18 @@ const ProductsPage = () => {
               transition={{ duration: 1, ease: "easeOut" }}
             />
 
-            <div className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-none border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
+            <div className="relative w-full aspect-[16/9] overflow-hidden rounded-none border border-[#a67958]/35 bg-[#ece6dd] shadow-[0_30px_70px_rgba(27,22,19,0.22),0_15px_30px_rgba(27,22,19,0.15)] z-10 flex flex-col">
               <div className="w-full h-full relative overflow-hidden flex-1">
                 {/* Blurred Backdrop for seamless look when aspect ratios don't match */}
                 <img 
-                  src="https://static.wixstatic.com/media/b20068_b6a3187a24e94e4abca9140398fabdd1~mv2.jpeg" 
+                  src="https://static.wixstatic.com/media/b20068_76d3102797cf4e6f9dcb186b78cac898~mv2.jpeg" 
                   alt=""
                   className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-20 grayscale"
                   referrerPolicy="no-referrer"
                 />
                 
                 <img 
-                  src="https://static.wixstatic.com/media/b20068_b6a3187a24e94e4abca9140398fabdd1~mv2.jpeg" 
+                  src="https://static.wixstatic.com/media/b20068_76d3102797cf4e6f9dcb186b78cac898~mv2.jpeg" 
                   alt="psylife products"
                   className="w-full h-full object-cover relative z-10 select-none block"
                   referrerPolicy="no-referrer"
@@ -1037,17 +862,17 @@ const ProductsPage = () => {
               {
                 key: "curious" as const,
                 tier: "The Curious Tier",
-                img: "https://static.wixstatic.com/media/b20068_d6986a7cf7b64fdb81501ab320d735b7~mv2.jpeg",
+                img: "https://static.wixstatic.com/media/b20068_6a55c505a45044d7a83dff1803c713c0~mv2.jpeg",
               },
               {
                 key: "committed" as const,
                 tier: "The Committed Tier",
-                img: "https://static.wixstatic.com/media/b20068_8cbe99385f5348b1911ae0a4fbc9738f~mv2.jpeg",
+                img: "https://static.wixstatic.com/media/b20068_caaacf26bb9040b291c7df8f34a06899~mv2.jpeg",
               },
               {
                 key: "creator" as const,
                 tier: "The Creator Tier",
-                img: "https://static.wixstatic.com/media/b20068_ae5d7cd9b0ac43f2b53fe3fe54ab0971~mv2.jpeg",
+                img: "https://static.wixstatic.com/media/b20068_984da22357c948aa813426d325b70256~mv2.jpeg",
               }
             ].map((prod, idx) => {
               const isSelected = activeTier === prod.key;
@@ -1059,7 +884,7 @@ const ProductsPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                  className={`relative w-full rounded-2xl md:rounded-[2rem] bg-[#ece6dd] overflow-hidden group select-none cursor-pointer transition-all duration-500 border ${
+                  className={`relative w-full aspect-[16/9] rounded-2xl md:rounded-[2rem] bg-[#ece6dd] overflow-hidden group select-none cursor-pointer transition-all duration-500 border ${
                     isSelected 
                       ? "border-[#a67958] ring-4 ring-[#a67958]/35 shadow-[0_30px_80px_rgba(166,121,88,0.25)] scale-[1.015]" 
                       : "border-[#a67958]/35 shadow-[0_20px_50px_rgba(27,22,19,0.12)] hover:scale-[1.005] hover:border-[#a67958]/60 hover:shadow-[0_25px_60px_rgba(27,22,19,0.18)]"
@@ -1081,7 +906,7 @@ const ProductsPage = () => {
                   <img 
                     src={prod.img} 
                     alt={prod.tier}
-                    className="w-full h-auto relative z-10 select-none block transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+                    className="w-full h-full object-cover relative z-10 select-none block transition-transform duration-700 ease-out group-hover:scale-[1.01]"
                     referrerPolicy="no-referrer"
                   />
                 </motion.div>
@@ -1126,112 +951,124 @@ const ProductsPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.45 }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 text-[#231e1a] font-sans"
+                className="space-y-10 text-[#231e1a] font-sans"
               >
-                {/* Left Column - 5 cols */}
-                <div className="lg:col-span-5 space-y-8">
-                  <div>
-                    <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">pricing model</span>
-                    <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1 flex flex-col items-start gap-1">
-                      <span>digital</span>
-                      <span className="text-[#a67958] text-[13px] font-mono font-bold leading-normal block mt-1">the curious teir</span>
-                    </h3>
-                    <p className="font-mono text-[11px] font-bold text-[#231e1a] uppercase bg-[#dfd5c8] border border-[#a67958]/20 rounded-full py-1.5 px-4 inline-block mt-3 shadow-sm">
-                      $199.99 per month (All-Inclusive)
-                    </p>
-                  </div>
-
-                  <div className="space-y-6 pt-6 border-t border-[#a67958]/20">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">the setup</h4>
-                    <div className="space-y-6">
-                      <div className="space-y-2">
-                        <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
-                          Your Own Private Local VPS
-                        </h5>
-                        <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                          We provide your child with a private, secure slice of a digital computer server (called a local VPS) running right here in Epping. It acts as a private digital study vault just for your family. Your child uses it to safely collect all their study notes, university research, and personal data. Because it stays completely local, no big public companies can look at, track, or leak your family's information.
-                        </p>
-                      </div>
-
-                      <div className="space-y-2">
-                        <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
-                          Any Device, Anytime across your Private Home Network
-                        </h5>
-                        <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                          Your child can securely connect to their private AI from any device—laptop, phone, or tablet—anytime they are on your private home network. It provides complete privacy for deep focus and study right at home.
-                        </p>
-                      </div>
-
-                      <div className="space-y-2">
-                        <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
-                          The Honest Truth
-                        </h5>
-                        <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                          There are no tech backup guarantees (SLAs) or 100% uptime promises on this local server setup. It is intentionally left as a raw, educational workspace so your child learns real-world skills like manually configuring systems, maintaining the physical machine, and fixing local connection errors from scratch—not just playing with a finished commercial app.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 pt-6 border-t border-[#a67958]/20">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">staying on track</h4>
-                    <div className="p-5 rounded-2xl bg-[#dfd5c8]/50 border border-[#a67958]/25 space-y-1.5 shadow-sm">
-                      <h5 className="font-sans font-bold text-xs lowercase text-[#231e1a]">Weekly 1-Hour Session</h5>
-                      <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                        Includes 1 live session every single week for exactly 1 hour. This is our direct time to check in, answer your questions, fix any local tech problems with the server, and make sure your child is actively using these local tools in real life.
-                      </p>
-                    </div>
-                  </div>
+                {/* Slide View in Details */}
+                <div className="relative w-full aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-[#a67958]/25 bg-[#dfd5c8] shadow-[0_15px_40px_rgba(27,22,19,0.08)] z-10">
+                  <img
+                    src="https://static.wixstatic.com/media/b20068_6a55c505a45044d7a83dff1803c713c0~mv2.jpeg"
+                    alt="The Curious Tier Digital Basecamp Slide"
+                    className="w-full h-full object-cover block"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
 
-                {/* Right Column - 7 cols */}
-                <div className="lg:col-span-7 space-y-6 lg:pl-8 lg:border-l border-[#a67958]/20">
-                  <div className="space-y-2">
-                    <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">academic acceleration syllabus</span>
-                    <h4 className="text-lg font-sans font-bold text-[#231e1a] tracking-tight lowercase">the 5 included learning playbooks</h4>
-                    <p className="text-xs text-[#231e1a]/70 lowercase leading-relaxed">
-                      Every single playbook is fully delivered in 5 easy-to-use, multi-sensory formats: Audio, Video, Slides, Simple Documents, and Scannable Charts/Infographics.
-                    </p>
-                  </div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12">
+                  {/* Left Column - 5 cols */}
+                  <div className="lg:col-span-5 space-y-8">
+                    <div>
+                      <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">pricing model</span>
+                      <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1 flex flex-col items-start gap-1">
+                        <span>digital</span>
+                        <span className="text-[#a67958] text-[13px] font-mono font-bold leading-normal block mt-1">the curious teir</span>
+                      </h3>
+                      <p className="font-mono text-[11px] font-bold text-[#231e1a] uppercase bg-[#dfd5c8] border border-[#a67958]/20 rounded-full py-1.5 px-4 inline-block mt-3 shadow-sm">
+                        $199.99 per month (All-Inclusive)
+                      </p>
+                    </div>
 
-                  <div className="space-y-4 pt-4">
-                    {[
-                      {
-                        num: "01",
-                        title: "Playbook 1: Factorial Thinking Guide",
-                        text: "Upgrades your child’s brain from old-school high school memorization into advanced systems thinking. It gives them the mental framework needed to link complex ideas together and handle massive university workloads without breaking under pressure."
-                      },
-                      {
-                        num: "02",
-                        title: "Playbook 2: Private Local Server Build Manual",
-                        text: "A direct, step-by-step instruction guide that takes away the confusion of physical tech setup. It teaches you and your child exactly how to build, run, and control your private local server right from your own desk."
-                      },
-                      {
-                        num: "03",
-                        title: "Playbook 3: Real-World Long-Term Learning Playbook",
-                        text: "A highly practical workbook showing your child how to turn their private local server into a lifetime educational partner. It ensures that as they move through university and into their career, their accumulated knowledge stays organized and scales with them over the years."
-                      },
-                      {
-                        num: "04",
-                        title: "Playbook 4: Reclaiming Time & Task Delegation Playbook",
-                        text: "A practical guide to stop your child from wasting hundreds of hours on low-level, repetitive study tasks, administrative chores, and transactional school prep. We teach them how to safely hand over these time-wasting tasks to automated personal helper tools running entirely on their private local server, reclaiming their time for high-level strategy and deep focus."
-                      },
-                      {
-                        num: "05",
-                        title: "Playbook 5: Finding Smart Insights & The Double-Check Playbook",
-                        text: "Teaches your child how to use artificial intelligence safely to uncover deep, unique insights that others miss. Most importantly, it teaches an \"audit-first\" mindset: never blindly trust a computer's answer, and always double-check machine outputs against real-world facts so they don't fall into common public tool traps."
-                      }
-                    ].map((playbook) => (
-                      <div key={playbook.num} className="flex gap-4 items-start p-4 bg-[#dfd5c8]/25 rounded-xl border border-[#a67958]/12 duration-300 hover:border-[#a67958]/35 transition-colors">
-                        <span className="font-mono text-xs tracking-wider text-[#a67958] font-bold bg-[#ece6dd] px-2.5 py-1.5 rounded border border-[#a67958]/25 block shrink-0 select-none">
-                          {playbook.num}
-                        </span>
-                        <div className="space-y-1">
-                          <h5 className="font-sans font-bold text-[13px] text-[#231e1a] lowercase leading-tight">{playbook.title}</h5>
-                          <p className="text-xs leading-relaxed text-[#231e1a]/80 lowercase">{playbook.text}</p>
+                    <div className="space-y-6 pt-6 border-t border-[#a67958]/20">
+                      <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">the setup</h4>
+                      <div className="space-y-6">
+                        <div className="space-y-2">
+                          <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
+                            Your Own Private Local VPS
+                          </h5>
+                          <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                            We provide your child with a private, secure slice of a digital computer server (called a local VPS) running right here in Epping. It acts as a private digital study vault just for your family. Your child uses it to safely collect all their study notes, university research, and personal data. Because it stays completely local, no big public companies can look at, track, or leak your family's information.
+                          </p>
+                        </div>
+
+                        <div className="space-y-2">
+                          <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
+                            Any Device, Anytime across your Private Home Network
+                          </h5>
+                          <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                            Your child can securely connect to their private AI from any device—laptop, phone, or tablet—anytime they are on your private home network. It provides complete privacy for deep focus and study right at home.
+                          </p>
+                        </div>
+
+                        <div className="space-y-2">
+                          <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
+                            The Honest Truth
+                          </h5>
+                          <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                            There are no tech backup guarantees (SLAs) or 100% uptime promises on this local server setup. It is intentionally left as a raw, educational workspace so your child learns real-world skills like manually configuring systems, maintaining the physical machine, and fixing local connection errors from scratch—not just playing with a finished commercial app.
+                          </p>
                         </div>
                       </div>
-                    ))}
+                    </div>
+
+                    <div className="space-y-3 pt-6 border-t border-[#a67958]/20">
+                      <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">staying on track</h4>
+                      <div className="p-5 rounded-2xl bg-[#dfd5c8]/50 border border-[#a67958]/25 space-y-1.5 shadow-sm">
+                        <h5 className="font-sans font-bold text-xs lowercase text-[#231e1a]">Weekly 1-Hour Session</h5>
+                        <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                          Includes 1 live session every single week for exactly 1 hour. This is our direct time to check in, answer your questions, fix any local tech problems with the server, and make sure your child is actively using these local tools in real life.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column - 7 cols */}
+                  <div className="lg:col-span-7 space-y-6 lg:pl-8 lg:border-l border-[#a67958]/20">
+                    <div className="space-y-2">
+                      <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">academic acceleration syllabus</span>
+                      <h4 className="text-lg font-sans font-bold text-[#231e1a] tracking-tight lowercase">the 5 included learning playbooks</h4>
+                      <p className="text-xs text-[#231e1a]/70 lowercase leading-relaxed">
+                        Every single playbook is fully delivered in 5 easy-to-use, multi-sensory formats: Audio, Video, Slides, Simple Documents, and Scannable Charts/Infographics.
+                      </p>
+                    </div>
+
+                    <div className="space-y-4 pt-4">
+                      {[
+                        {
+                          num: "01",
+                          title: "Playbook 1: Factorial Thinking Guide",
+                          text: "Upgrades your child’s brain from old-school high school memorization into advanced systems thinking. It gives them the mental framework needed to link complex ideas together and handle massive university workloads without breaking under pressure."
+                        },
+                        {
+                          num: "02",
+                          title: "Playbook 2: Private Local Server Build Manual",
+                          text: "A direct, step-by-step instruction guide that takes away the confusion of physical tech setup. It teaches you and your child exactly how to build, run, and control your private local server right from your own desk."
+                        },
+                        {
+                          num: "03",
+                          title: "Playbook 3: Real-World Long-Term Learning Playbook",
+                          text: "A highly practical workbook showing your child how to turn their private local server into a lifetime educational partner. It ensures that as they move through university and into their career, their accumulated knowledge stays organized and scales with them over the years."
+                        },
+                        {
+                          num: "04",
+                          title: "Playbook 4: Reclaiming Time & Task Delegation Playbook",
+                          text: "A practical guide to stop your child from wasting hundreds of hours on low-level, repetitive study tasks, administrative chores, and transactional school prep. We teach them how to safely hand over these time-wasting tasks to automated personal helper tools running entirely on their private local server, reclaiming their time for high-level strategy and deep focus."
+                        },
+                        {
+                          num: "05",
+                          title: "Playbook 5: Finding Smart Insights & The Double-Check Playbook",
+                          text: "Teaches your child how to use artificial intelligence safely to uncover deep, unique insights that others miss. Most importantly, it teaches an \"audit-first\" mindset: never blindly trust a computer's answer, and always double-check machine outputs against real-world facts so they don't fall into common public tool traps."
+                        }
+                      ].map((playbook) => (
+                        <div key={playbook.num} className="flex gap-4 items-start p-4 bg-[#dfd5c8]/25 rounded-xl border border-[#a67958]/12 duration-300 hover:border-[#a67958]/35 transition-colors">
+                          <span className="font-mono text-xs tracking-wider text-[#a67958] font-bold bg-[#ece6dd] px-2.5 py-1.5 rounded border border-[#a67958]/25 block shrink-0 select-none">
+                            {playbook.num}
+                          </span>
+                          <div className="space-y-1">
+                            <h5 className="font-sans font-bold text-[13px] text-[#231e1a] lowercase leading-tight">{playbook.title}</h5>
+                            <p className="text-xs leading-relaxed text-[#231e1a]/80 lowercase">{playbook.text}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -1244,126 +1081,138 @@ const ProductsPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.45 }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 text-[#231e1a] font-sans"
+                className="space-y-10 text-[#231e1a] font-sans"
               >
-                {/* Left Column - 5 cols */}
-                <div className="lg:col-span-5 space-y-8">
-                  <div>
-                    <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">cohort program</span>
-                    <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1 flex flex-col items-start gap-1">
-                      <span>physical</span>
-                      <span className="text-[#a67958] text-[13px] font-mono font-bold leading-normal block mt-1">the committed teir</span>
-                    </h3>
-                    <p className="font-mono text-[11px] font-bold text-[#231e1a] uppercase bg-[#dfd5c8] border border-[#a67958]/20 rounded-full py-1.5 px-4 inline-block mt-3 shadow-sm">
-                      $499.99 (All-Inclusive)
-                    </p>
+                {/* Slide View in Details */}
+                <div className="relative w-full aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-[#a67958]/25 bg-[#dfd5c8] shadow-[0_15px_40px_rgba(27,22,19,0.08)] z-10">
+                  <img
+                    src="https://static.wixstatic.com/media/b20068_caaacf26bb9040b291c7df8f34a06899~mv2.jpeg"
+                    alt="The Committed Tier Physical Trail Slide"
+                    className="w-full h-full object-cover block"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12">
+                  {/* Left Column - 5 cols */}
+                  <div className="lg:col-span-5 space-y-8">
+                    <div>
+                      <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">cohort program</span>
+                      <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1 flex flex-col items-start gap-1">
+                        <span>physical</span>
+                        <span className="text-[#a67958] text-[13px] font-mono font-bold leading-normal block mt-1">the committed teir</span>
+                      </h3>
+                      <p className="font-mono text-[11px] font-bold text-[#231e1a] uppercase bg-[#dfd5c8] border border-[#a67958]/20 rounded-full py-1.5 px-4 inline-block mt-3 shadow-sm">
+                        $499.99 (All-Inclusive)
+                      </p>
+                    </div>
+
+                    <div className="space-y-4 pt-6 border-t border-[#a67958]/20">
+                      <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">program structure</h4>
+                      <div className="grid grid-cols-2 gap-3">
+                        {[
+                          { label: "duration", value: "5 one-hour discussions" },
+                          { label: "location", value: "outdoors in Epping Park" },
+                          { label: "cohort limit", value: "max 5 parent-child pairs" },
+                          { label: "audience type", value: "exclusively parent & child" }
+                        ].map((item, idx) => (
+                          <div key={idx} className="p-3 bg-[#dfd5c8]/50 rounded-xl border border-[#a67958]/20 text-center flex flex-col justify-center">
+                            <span className="font-mono text-[8.5px] uppercase tracking-wider text-[#a67958]/80 font-bold block">{item.label}</span>
+                            <span className="text-xs font-sans font-semibold text-[#231e1a] lowercase mt-1 block leading-tight">{item.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-6 pt-6 border-t border-[#a67958]/20">
+                      <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">included core experiences</h4>
+                      <div className="space-y-5">
+                        <div className="space-y-1">
+                          <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
+                            Gadget Integration
+                          </h5>
+                          <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                            Hands-on learning loops utilizing our specialized physical gadgets alongside your family's personal study notes and materials.
+                          </p>
+                        </div>
+
+                        <div className="space-y-1">
+                          <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
+                            Shared Learning Environment
+                          </h5>
+                          <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                            Families bring their gadgets directly into the park to apply, talk through, and practice the core material in a live setting. This creates a shared local environment where parent-and-child pairs problem-solve together, build accountability, and learn directly from each other's real-time experiences.
+                          </p>
+                        </div>
+
+                        <div className="space-y-1">
+                          <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
+                            Walk in the Park
+                          </h5>
+                          <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                            Regular, structured outdoor sessions for our 5 pairs to step away from screens, reset their focus, and ground heavy, multi-layered cognitive work in nature and physical movement.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 pt-6 border-t border-[#a67958]/20 bg-[#dfd5c8]/30 p-5 rounded-2xl border border-[#a67958]/15">
+                      <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">the core benefit over digital</h4>
+                      <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                        Screen-based study alone creates isolated stress blocks for both parents and kids. By physically gathering in Epping Park, we consciously lower stress levels through nature exposure and movement. Moving together naturally synchronizes biological rhythms—balancing your family's stress hormones (cortisol) so you can process complex data side-by-side with clear, calm minds.
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="space-y-4 pt-6 border-t border-[#a67958]/20">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">program structure</h4>
-                    <div className="grid grid-cols-2 gap-3">
+                  {/* Right Column - 7 cols */}
+                  <div className="lg:col-span-7 space-y-6 lg:pl-8 lg:border-l border-[#a67958]/20">
+                    <div className="space-y-2">
+                      <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">nature integrated curriculum</span>
+                      <h4 className="text-lg font-sans font-bold text-[#231e1a] tracking-tight lowercase">the 5 core learning areas practiced in the park</h4>
+                      <p className="text-xs text-[#231e1a]/70 lowercase leading-relaxed">
+                        Transform theoretical knowledge into concrete bodily habits. Conducted directly inside Epping Park to synchronize focus parameters.
+                      </p>
+                    </div>
+
+                    <div className="space-y-4 pt-4">
                       {[
-                        { label: "duration", value: "5 one-hour discussions" },
-                        { label: "location", value: "outdoors in Epping Park" },
-                        { label: "cohort limit", value: "max 5 parent-child pairs" },
-                        { label: "audience type", value: "exclusively parent & child" }
-                      ].map((item, idx) => (
-                        <div key={idx} className="p-3 bg-[#dfd5c8]/50 rounded-xl border border-[#a67958]/20 text-center flex flex-col justify-center">
-                          <span className="font-mono text-[8.5px] uppercase tracking-wider text-[#a67958]/80 font-bold block">{item.label}</span>
-                          <span className="text-xs font-sans font-semibold text-[#231e1a] lowercase mt-1 block leading-tight">{item.value}</span>
+                        {
+                          num: "01",
+                          title: "Area 1: Factorial Thinking in Action",
+                          text: "Moving away from standard high school memorization. Pairs practice linking complex, multi-layered real-world ideas together under pressure, testing frameworks out in the open air to build fluid systems thinking."
+                        },
+                        {
+                          num: "02",
+                          title: "Area 2: Live Local Server Architecture Talk",
+                          text: "Working through the real-world setup and mechanical realities of building and running a secure local server right from a home desk, clearing up any tech confusion together."
+                        },
+                        {
+                          num: "03",
+                          title: "Area 3: Long-Term Knowledge Mapping",
+                          text: "Mapping out how to structure your personal server so it works as a dynamic, lifelong educational partner that successfully captures university and career data as your child grows."
+                        },
+                        {
+                          num: "04",
+                          title: "Area 4: Safe Task Delegation Workshops",
+                          text: "Reviewing how to identify low-level, repetitive school chores and administrative busywork, mapping out exactly how to safely offload these distractions to personal local helper tools so your child reclaims deep focus time."
+                        },
+                        {
+                          num: "05",
+                          title: "Area 5: Finding Insights & Spotting Errors",
+                          text: "Practicing how to push AI tools to find unique, smart insights that others miss, while drilling the \"audit-first\" habit of checking machine answers against hard, real-world facts."
+                        }
+                      ].map((area) => (
+                        <div key={area.num} className="flex gap-4 items-start p-4 bg-[#dfd5c8]/25 rounded-xl border border-[#a67958]/12 duration-300 hover:border-[#a67958]/35 transition-colors">
+                          <span className="font-mono text-xs tracking-wider text-[#a67958] font-bold bg-[#ece6dd] px-2.5 py-1.5 rounded border border-[#a67958]/25 block shrink-0 select-none">
+                            {area.num}
+                          </span>
+                          <div className="space-y-1">
+                            <h5 className="font-sans font-bold text-[13px] text-[#231e1a] lowercase leading-tight">{area.title}</h5>
+                            <p className="text-xs leading-relaxed text-[#231e1a]/80 lowercase">{area.text}</p>
+                          </div>
                         </div>
                       ))}
                     </div>
-                  </div>
-
-                  <div className="space-y-6 pt-6 border-t border-[#a67958]/20">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">included core experiences</h4>
-                    <div className="space-y-5">
-                      <div className="space-y-1">
-                        <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
-                          Gadget Integration
-                        </h5>
-                        <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                          Hands-on learning loops utilizing our specialized physical gadgets alongside your family's personal study notes and materials.
-                        </p>
-                      </div>
-
-                      <div className="space-y-1">
-                        <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
-                          Shared Learning Environment
-                        </h5>
-                        <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                          Families bring their gadgets directly into the park to apply, talk through, and practice the core material in a live setting. This creates a shared local environment where parent-and-child pairs problem-solve together, build accountability, and learn directly from each other's real-time experiences.
-                        </p>
-                      </div>
-
-                      <div className="space-y-1">
-                        <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
-                          Walk in the Park
-                        </h5>
-                        <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                          Regular, structured outdoor sessions for our 5 pairs to step away from screens, reset their focus, and ground heavy, multi-layered cognitive work in nature and physical movement.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 pt-6 border-t border-[#a67958]/20 bg-[#dfd5c8]/30 p-5 rounded-2xl border border-[#a67958]/15">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">the core benefit over digital</h4>
-                    <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                      Screen-based study alone creates isolated stress blocks for both parents and kids. By physically gathering in Epping Park, we consciously lower stress levels through nature exposure and movement. Moving together naturally synchronizes biological rhythms—balancing your family's stress hormones (cortisol) so you can process complex data side-by-side with clear, calm minds.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Right Column - 7 cols */}
-                <div className="lg:col-span-7 space-y-6 lg:pl-8 lg:border-l border-[#a67958]/20">
-                  <div className="space-y-2">
-                    <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">nature integrated curriculum</span>
-                    <h4 className="text-lg font-sans font-bold text-[#231e1a] tracking-tight lowercase">the 5 core learning areas practiced in the park</h4>
-                    <p className="text-xs text-[#231e1a]/70 lowercase leading-relaxed">
-                      Transform theoretical knowledge into concrete bodily habits. Conducted directly inside Epping Park to synchronize focus parameters.
-                    </p>
-                  </div>
-
-                  <div className="space-y-4 pt-4">
-                    {[
-                      {
-                        num: "01",
-                        title: "Area 1: Factorial Thinking in Action",
-                        text: "Moving away from standard high school memorization. Pairs practice linking complex, multi-layered real-world ideas together under pressure, testing frameworks out in the open air to build fluid systems thinking."
-                      },
-                      {
-                        num: "02",
-                        title: "Area 2: Live Local Server Architecture Talk",
-                        text: "Working through the real-world setup and mechanical realities of building and running a secure local server right from a home desk, clearing up any tech confusion together."
-                      },
-                      {
-                        num: "03",
-                        title: "Area 3: Long-Term Knowledge Mapping",
-                        text: "Mapping out how to structure your personal server so it works as a dynamic, lifelong educational partner that successfully captures university and career data as your child grows."
-                      },
-                      {
-                        num: "04",
-                        title: "Area 4: Safe Task Delegation Workshops",
-                        text: "Reviewing how to identify low-level, repetitive school chores and administrative busywork, mapping out exactly how to safely offload these distractions to personal local helper tools so your child reclaims deep focus time."
-                      },
-                      {
-                        num: "05",
-                        title: "Area 5: Finding Insights & Spotting Errors",
-                        text: "Practicing how to push AI tools to find unique, smart insights that others miss, while drilling the \"audit-first\" habit of checking machine answers against hard, real-world facts."
-                      }
-                    ].map((area) => (
-                      <div key={area.num} className="flex gap-4 items-start p-4 bg-[#dfd5c8]/25 rounded-xl border border-[#a67958]/12 duration-300 hover:border-[#a67958]/35 transition-colors">
-                        <span className="font-mono text-xs tracking-wider text-[#a67958] font-bold bg-[#ece6dd] px-2.5 py-1.5 rounded border border-[#a67958]/25 block shrink-0 select-none">
-                          {area.num}
-                        </span>
-                        <div className="space-y-1">
-                          <h5 className="font-sans font-bold text-[13px] text-[#231e1a] lowercase leading-tight">{area.title}</h5>
-                          <p className="text-xs leading-relaxed text-[#231e1a]/80 lowercase">{area.text}</p>
-                        </div>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </motion.div>
@@ -1376,117 +1225,129 @@ const ProductsPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.45 }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 text-[#231e1a] font-sans"
+                className="space-y-10 text-[#231e1a] font-sans"
               >
-                {/* Left Column - 5 cols */}
-                <div className="lg:col-span-5 space-y-8">
-                  <div>
-                    <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">5-day retreat</span>
-                    <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1 flex flex-col items-start gap-1">
-                      <span>immersive</span>
-                      <span className="text-[#a67958] text-[13px] font-mono font-bold leading-normal block mt-1">the creator teir</span>
-                    </h3>
-                    <p className="font-mono text-[11px] font-bold text-[#231e1a] uppercase bg-[#dfd5c8] border border-[#a67958]/20 rounded-full py-1.5 px-4 inline-block mt-3 shadow-sm">
-                      $2999.99 (All-Inclusive)
-                    </p>
+                {/* Slide View in Details */}
+                <div className="relative w-full aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-[#a67958]/25 bg-[#dfd5c8] shadow-[0_15px_40px_rgba(27,22,19,0.08)] z-10">
+                  <img
+                    src="https://static.wixstatic.com/media/b20068_984da22357c948aa813426d325b70256~mv2.jpeg"
+                    alt="The Creator Tier Immersive Summit Slide"
+                    className="w-full h-full object-cover block"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12">
+                  {/* Left Column - 5 cols */}
+                  <div className="lg:col-span-5 space-y-8">
+                    <div>
+                      <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">5-day retreat</span>
+                      <h3 className="text-2xl md:text-3xl font-sans font-bold text-[#231e1a] lowercase tracking-tight mt-1 flex flex-col items-start gap-1">
+                        <span>immersive</span>
+                        <span className="text-[#a67958] text-[13px] font-mono font-bold leading-normal block mt-1">the creator teir</span>
+                      </h3>
+                      <p className="font-mono text-[11px] font-bold text-[#231e1a] uppercase bg-[#dfd5c8] border border-[#a67958]/20 rounded-full py-1.5 px-4 inline-block mt-3 shadow-sm">
+                        $2999.99 (All-Inclusive)
+                      </p>
+                    </div>
+
+                    <div className="space-y-4 pt-6 border-t border-[#a67958]/20">
+                      <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">program structure</h4>
+                      <div className="grid grid-cols-2 gap-3">
+                        {[
+                          { label: "duration", value: "strictly 5 days long" },
+                          { label: "location", value: "Blue Mountains" },
+                          { label: "cohort limit", value: "max 5 families (strictly capped)" },
+                          { label: "audience type", value: "parent & child" }
+                        ].map((item, idx) => (
+                          <div key={idx} className="p-3 bg-[#dfd5c8]/50 rounded-xl border border-[#a67958]/20 text-center flex flex-col justify-center">
+                            <span className="font-mono text-[8.5px] uppercase tracking-wider text-[#a67958]/80 font-bold block">{item.label}</span>
+                            <span className="text-xs font-sans font-semibold text-[#231e1a] lowercase mt-1 block leading-tight">{item.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-6 pt-6 border-t border-[#a67958]/20">
+                      <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">included core experiences</h4>
+                      <div className="space-y-5">
+                        <div className="space-y-1">
+                          <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
+                            Environment Reset
+                          </h5>
+                          <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                            A deeply focused 5-day environment disruption completely away from daily home routines and distractions, designed for intensive rest, clear perspective shifts, and nature integration.
+                          </p>
+                        </div>
+
+                        <div className="space-y-1">
+                          <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
+                            Custom Process Optimization
+                          </h5>
+                          <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                            Five full days dedicated entirely to isolating, building, and refining your family's customized data processes and independent learning workflows out in a quiet retreat setting.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 pt-6 border-t border-[#a67958]/20 bg-[#dfd5c8]/30 p-5 rounded-2xl border border-[#a67958]/15">
+                      <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">the core benefit</h4>
+                      <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
+                        A complete 5-day environment reset transforms your home dynamic. By completely stepping out of everyday home routines and distractions, your family unites into a tightly aligned team. You return home not just with a technological setup, but as a cohesive force to be reckoned with—fully commanding a private AI environment that belongs entirely to your family.
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="space-y-4 pt-6 border-t border-[#a67958]/20">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">program structure</h4>
-                    <div className="grid grid-cols-2 gap-3">
+                  {/* Right Column - 7 cols */}
+                  <div className="lg:col-span-7 space-y-6 lg:pl-8 lg:border-l border-[#a67958]/20">
+                    <div className="space-y-2">
+                      <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">retreat plan</span>
+                      <h4 className="text-lg font-sans font-bold text-[#231e1a] tracking-tight lowercase">the 5 tracks solved during the retreat</h4>
+                      <p className="text-xs text-[#231e1a]/70 lowercase leading-relaxed">
+                        Emerge with direct physical execution blocks. Establish complete operational and data agency for your family.
+                      </p>
+                    </div>
+
+                    <div className="space-y-4 pt-4">
                       {[
-                        { label: "duration", value: "strictly 5 days long" },
-                        { label: "location", value: "Blue Mountains" },
-                        { label: "cohort limit", value: "max 5 families (strictly capped)" },
-                        { label: "audience type", value: "parent & child" }
-                      ].map((item, idx) => (
-                        <div key={idx} className="p-3 bg-[#dfd5c8]/50 rounded-xl border border-[#a67958]/20 text-center flex flex-col justify-center">
-                          <span className="font-mono text-[8.5px] uppercase tracking-wider text-[#a67958]/80 font-bold block">{item.label}</span>
-                          <span className="text-xs font-sans font-semibold text-[#231e1a] lowercase mt-1 block leading-tight">{item.value}</span>
+                        {
+                          num: "01",
+                          title: "Track 1: Factorial Thinking",
+                          text: "Dedicating extended, undistracted time to completely reset your child's cognitive habits, changing their core approach from linear school memory work to advanced, multidimensional systems architecture."
+                        },
+                        {
+                          num: "02",
+                          title: "Track 2: Complete Local Server Blueprinting",
+                          text: "Deep diving into the technical mechanics of setting up a secure, private local vault, ensuring both parent and child completely understand how to build and control their private network from the ground up."
+                        },
+                        {
+                          num: "03",
+                          title: "Track 3: The Multi-Year Academic Asset",
+                          text: "Designing the lifetime dynamic database structure that will sit on your private local server, ensuring your child's accumulated school and university knowledge scales seamlessly as they transition into their future career."
+                        },
+                        {
+                          num: "04",
+                          title: "Track 4: The Automation & Time-Reclamation Matrix",
+                          text: "Building out the custom automated personal helper tools on your server, systematically mapping and delegating low-level admin tasks so your child returns home with hours of daily study time completely reclaimed."
+                        },
+                        {
+                          num: "05",
+                          title: "Track 5: The \"Audit-First\" Insight Drill",
+                          text: "Intensively training the family team to generate rare, competitive insights through AI while firmly grounding them in a strict double-check workflow, ensuring they never blindly trust automated machine output."
+                        }
+                      ].map((track) => (
+                        <div key={track.num} className="flex gap-4 items-start p-4 bg-[#dfd5c8]/25 rounded-xl border border-[#a67958]/12 duration-300 hover:border-[#a67958]/35 transition-colors">
+                          <span className="font-mono text-xs tracking-wider text-[#a67958] font-bold bg-[#ece6dd] px-2.5 py-1.5 rounded border border-[#a67958]/25 block shrink-0 select-none">
+                            {track.num}
+                          </span>
+                          <div className="space-y-1">
+                            <h5 className="font-sans font-bold text-[13px] text-[#231e1a] lowercase leading-tight">{track.title}</h5>
+                            <p className="text-xs leading-relaxed text-[#231e1a]/80 lowercase">{track.text}</p>
+                          </div>
                         </div>
                       ))}
                     </div>
-                  </div>
-
-                  <div className="space-y-6 pt-6 border-t border-[#a67958]/20">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">included core experiences</h4>
-                    <div className="space-y-5">
-                      <div className="space-y-1">
-                        <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
-                          Environment Reset
-                        </h5>
-                        <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                          A deeply focused 5-day environment disruption completely away from daily home routines and distractions, designed for intensive rest, clear perspective shifts, and nature integration.
-                        </p>
-                      </div>
-
-                      <div className="space-y-1">
-                        <h5 className="font-sans font-bold text-[13px] lowercase text-[#231e1a] border-l-2 border-[#a67958]/55 pl-3">
-                          Custom Process Optimization
-                        </h5>
-                        <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                          Five full days dedicated entirely to isolating, building, and refining your family's customized data processes and independent learning workflows out in a quiet retreat setting.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 pt-6 border-t border-[#a67958]/20 bg-[#dfd5c8]/30 p-5 rounded-2xl border border-[#a67958]/15">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#a67958] font-bold">the core benefit</h4>
-                    <p className="text-xs leading-relaxed text-[#231e1a]/85 lowercase">
-                      A complete 5-day environment reset transforms your home dynamic. By completely stepping out of everyday home routines and distractions, your family unites into a tightly aligned team. You return home not just with a technological setup, but as a cohesive force to be reckoned with—fully commanding a private AI environment that belongs entirely to your family.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Right Column - 7 cols */}
-                <div className="lg:col-span-7 space-y-6 lg:pl-8 lg:border-l border-[#a67958]/20">
-                  <div className="space-y-2">
-                    <span className="font-mono text-[8.5px] uppercase tracking-[0.3em] text-[#a67958] font-bold">retreat plan</span>
-                    <h4 className="text-lg font-sans font-bold text-[#231e1a] tracking-tight lowercase">the 5 tracks solved during the retreat</h4>
-                    <p className="text-xs text-[#231e1a]/70 lowercase leading-relaxed">
-                      Emerge with direct physical execution blocks. Establish complete operational and data agency for your family.
-                    </p>
-                  </div>
-
-                  <div className="space-y-4 pt-4">
-                    {[
-                      {
-                        num: "01",
-                        title: "Track 1: Factorial Thinking",
-                        text: "Dedicating extended, undistracted time to completely reset your child's cognitive habits, changing their core approach from linear school memory work to advanced, multidimensional systems architecture."
-                      },
-                      {
-                        num: "02",
-                        title: "Track 2: Complete Local Server Blueprinting",
-                        text: "Deep diving into the technical mechanics of setting up a secure, private local vault, ensuring both parent and child completely understand how to build and control their private network from the ground up."
-                      },
-                      {
-                        num: "03",
-                        title: "Track 3: The Multi-Year Academic Asset",
-                        text: "Designing the lifetime dynamic database structure that will sit on your private local server, ensuring your child's accumulated school and university knowledge scales seamlessly as they transition into their future career."
-                      },
-                      {
-                        num: "04",
-                        title: "Track 4: The Automation & Time-Reclamation Matrix",
-                        text: "Building out the custom automated personal helper tools on your server, systematically mapping and delegating low-level admin tasks so your child returns home with hours of daily study time completely reclaimed."
-                      },
-                      {
-                        num: "05",
-                        title: "Track 5: The \"Audit-First\" Insight Drill",
-                        text: "Intensively training the family team to generate rare, competitive insights through AI while firmly grounding them in a strict double-check workflow, ensuring they never blindly trust automated machine output."
-                      }
-                    ].map((track) => (
-                      <div key={track.num} className="flex gap-4 items-start p-4 bg-[#dfd5c8]/25 rounded-xl border border-[#a67958]/12 duration-300 hover:border-[#a67958]/35 transition-colors">
-                        <span className="font-mono text-xs tracking-wider text-[#a67958] font-bold bg-[#ece6dd] px-2.5 py-1.5 rounded border border-[#a67958]/25 block shrink-0 select-none">
-                          {track.num}
-                        </span>
-                        <div className="space-y-1">
-                          <h5 className="font-sans font-bold text-[13px] text-[#231e1a] lowercase leading-tight">{track.title}</h5>
-                          <p className="text-xs leading-relaxed text-[#231e1a]/80 lowercase">{track.text}</p>
-                        </div>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </motion.div>
@@ -1534,185 +1395,9 @@ const ProductsPage = () => {
   );
 };
 
-const LEARNING_PLAYBOOKS = [
-  {
-    num: "01",
-    tag: "systems thinking",
-    title: "Factorial Thinking Guide",
-    focus: "Upgrading your child’s brain from old-school high school memorization into advanced systems thinking.",
-    inside: "Deep-dive materials designed to replace simple, linear rote-learning with first-principles logic. It installs the mental architecture your child needs to map complex, multi-layered real-world ideas together and successfully handle massive workloads without breaking under pressure.",
-    src: "https://static.wixstatic.com/media/b20068_df8efa95c19e4a69bf58e369bb5bb883~mv2.jpeg",
-    alt: "upgrading child's brain from old-school memorization to advanced systems thinking",
-    audio: {
-      title: "factorial_vs_linear_01.mp3",
-      description: "exploring the breakdown of traditional high school memory paradigms.",
-      transcript: "linear thinking works for simple, repetitive historical datasets, but fails catastrophically under modern multi-layered complexity. factorial logic installs deep-mind first-principles logic so your child can map complex systems together effortlessly."
-    },
-    video: {
-      title: "first principles cognitive geometry",
-      chapters: ["00:00 - introduction to linear limits", "03:15 - system-variable mapping", "10:45 - deep-focus execution loops"],
-      caption: "we are upgrading the mind's background operating system here in Epping 2121. replacing lists with beautiful relational logic."
-    },
-    slides: {
-      slidesData: [
-        "slide 1: traditional linear vs. advanced factorial. static memory decays immediately; system maps grow stronger with load.",
-        "slide 2: parsing variables. kids isolate independent causal factors, map interactive links of study materials.",
-        "slide 3: real world deployment. establishing clean structural anchors at the home desk to shield attention streams.",
-        "slide 4: Epping cognitive synergy. mapping school curriculums directly into modular structural notes."
-      ]
-    },
-    document: {
-      title: "THE COMPREHENSIVE FACTORIAL THINKING MANIFESTO",
-      body: "The traditional tutoring cycle is self-repeating loop of content delivery and administrative drills that exhaust the developing mind. This playbook bypasses that exhausting trajectory by installing a complete first-principles thinking blueprint directly. When your child learns of a system, they don't simply write down facts; they classify variables into coordinates, evaluate weight and dependencies, and map causal linkages across topics."
-    },
-    chart: {
-      title: "factorial constellation map",
-      nodes: ["biological constraints", "relational connection", "causal weight", "attention feedback"]
-    }
-  },
-  {
-    num: "02",
-    tag: "private local server",
-    title: "Private Local Server Build Manual",
-    focus: "A direct, step-by-step instruction guide that takes away all the confusion of technical setup.",
-    inside: "Practical, bottom-up manuals that teach you and your child exactly how to build, deploy, configure, and control your family’s private local VPS server right from your own desk. It focuses on hands-on deployment and managing software from scratch.",
-    src: "https://static.wixstatic.com/media/b20068_ae5d7cd9b0ac43f2b53fe3fe54ab0971~mv2.jpeg",
-    alt: "step-by-step instruction guide for private local server VPS setup",
-    audio: {
-      title: "sovereign_vps_setup_02.mp3",
-      description: "building custom servers for unconstrained family safety.",
-      transcript: "building and commanding an independent node removes corporate data leverage. it introduces your child to real linux execution, networking, port protocols, and server deployment bottom-up."
-    },
-    video: {
-      title: "sovereign home-server terminal mapping",
-      chapters: ["00:00 - physical architecture vs VPS virtual node", "04:30 - shell configurations and root keys", "09:12 - mapping clean data pipelines"],
-      caption: "this is physical technology. we configure VPS virtual servers and connect safe client vaults directly from first-principles."
-    },
-    slides: {
-      slidesData: [
-        "slide 1: local VPS setup rules. we build on secure independent servers to prevent telemetry tracing.",
-        "slide 2: key generation steps. parent & child establish matching credentials together on a unified screen.",
-        "slide 3: port routing logic. blocking external telemetry trackers while maintaining high-speed localized sync.",
-        "slide 4: data persistence loops. backing up family knowledge maps in encrypted offline vaults."
-      ]
-    },
-    document: {
-      title: "BOTTOM-UP VPS SERVER CONFIGURATION MANUAL",
-      body: "Modern technology has trained our children to be passive consumers of locked interfaces. This workbook establishes the exact opposite logic. By configuring, launching, and commanding a private Virtual Private Server, your family gains complete control of your computational space. It teaches systems administration, dockerization, networking, and security keys."
-    },
-    chart: {
-      title: "encrypted network loop model",
-      nodes: ["family home clients", "encrypted gateway", "sovereign VPS vault", "automated data sync"]
-    }
-  },
-  {
-    num: "03",
-    tag: "academic assets",
-    title: "Real-World Long-Term Learning Playbook",
-    focus: "Turning your private server into a lifetime educational partner and a permanent family asset.",
-    inside: "A highly tactical workbook showing your child how to systematically organize, capture, and structure their personal learning notes and research. It ensures that as they transition through Year 11, move into university (like USYD or UNSW), and step into their career, their accumulated knowledge scales dynamically with them over the years.",
-    src: "https://static.wixstatic.com/media/b20068_681eecf7a90048acb69aa538c6674558~mv2.jpg",
-    alt: "tactical workbook for organizing knowledge vault over multi-year span",
-    audio: {
-      title: "permanent_knowledge_vault_03.mp3",
-      description: "building and scaling multi-year academic assets.",
-      transcript: "knowledge decays unless it lives inside structured relational directories. this playbook sets up an active knowledge capture vault that scales with them through HSC, university, and career."
-    },
-    video: {
-      title: "structuring long-term relational databases",
-      chapters: ["00:00 - traditional folder trees are dead", "03:55 - setting up dynamic relational tags", "08:15 - knowledge consolidation systems"],
-      caption: "their accumulated knowledge becomes an actual physical asset, growing with them year after year."
-    },
-    slides: {
-      slidesData: [
-        "slide 1: permanent asset philosophy. every notes file acts as a structured investment that pays dividends for years.",
-        "slide 2: relational indexing. tags represent contextual links across schools (such as Year 11, USYD, UNSW).",
-        "slide 3: database triggers. creating automatic references so related concepts cluster organically.",
-        "slide 4: active reading models. extracting hard core insights from dry, traditional public textbooks."
-      ]
-    },
-    document: {
-      title: "TRANSITIONAL ACADEMIC ASSET WORKBOOK",
-      body: "High school kids threw away their study folders immediately after exams because those files lack systematic utility. This playbook implements a lifetime database directory. By standardizing capture structures on their private server, the notes your child writes in Year 11 become the exact foundations they leverage during university lectures and eventually inside executive workplace environments."
-    },
-    chart: {
-      title: "lifetime knowledge asset hierarchy",
-      nodes: ["capture inputs", "dynamic relation tags", "central vault core", "long-term outputs"]
-    }
-  },
-  {
-    num: "04",
-    tag: "automation mechanics",
-    title: "Reclaiming Time & Task Delegation Playbook",
-    focus: "Stopping your child from wasting hundreds of hours on low-level, repetitive study chores and administrative tasks.",
-    inside: "A step-by-step guide on how to safely identify and hand over transactional busywork (like formatting notes, manual scheduling, and sorting academic data) to automated personal helper tools running entirely on their private local server. This allows them to protect their limited cognitive energy and reclaim their time for high-level strategy and deep focus.",
-    src: "https://static.wixstatic.com/media/b20068_d6986a7cf7b64fdb81501ab320d735b7~mv2.jpeg",
-    alt: "reclaiming study hours by delegating transactional task workloads",
-    audio: {
-      title: "study_chore_automation_04.mp3",
-      description: "how to program helper scripts to clear administrative busywork.",
-      transcript: "admin study chores consume limited mental concentration. we show they can program helper scripts on their local server to auto-sort notes, auto-format study schedules and protect strategy time."
-    },
-    video: {
-      title: "scripting automated study helpers",
-      chapters: ["00:00 - identifying cognitive leaks", "05:10 - configuring auto-sorter daemons", "09:44 - time reclamation metrics"],
-      caption: "save hundreds of hours. delegate routine tasks to personal automated tools running on your server."
-    },
-    slides: {
-      slidesData: [
-        "slide 1: transactional study leakage. formatting notes, filing folders, and typing summaries is expensive busywork.",
-        "slide 2: delegation mechanics. how to program light cron jobs to sort incoming study PDFs autonomously.",
-        "slide 3: mental energy protection. keeping 100% of cognitive focus high-level on strategy, logic and deep study.",
-        "slide 4: Epping 2121 schedule optimization. automated calendars that adapt in real-time to family rhythms."
-      ]
-    },
-    document: {
-      title: "STUDY TASKS DELEGATION PROTOCOL",
-      body: "Attention is a finite resource. When a child spends hours formatting, copying text, or manually organizing files, they deplete their willpower before deep learning even starts. This guide defines a clear delegation pipeline. We map all mechanical workloads and write secure scripts on their personal local VPS to handle them, protecting and reserving cognitive energy for deep focus."
-    },
-    chart: {
-      title: "delegation workflow matrix",
-      nodes: ["low-level inputs", "automation script pool", "filtered study files", "deep focus hours"]
-    }
-  },
-  {
-    num: "05",
-    tag: "audit-first insights",
-    title: "Finding Smart Insights & The Double-Check Playbook",
-    focus: "Uncovering unique insights using AI while installing a strict \"audit-first\" safety mindset.",
-    inside: "Advanced frameworks that teach your child how to push artificial intelligence tools to find deep, non-obvious ideas that others miss. Crucially, it drills the habit of never blindly trusting a computer's answer, mapping out exactly how to double-check machine outputs against hard, real-world facts so they never fall into the passive public tool trap.",
-    src: "https://static.wixstatic.com/media/b20068_f750f553758547128e12ae8756d97a8d~mv2.jpeg",
-    alt: "advanced frameworks for AI prompt inquiry with strict double check auditing",
-    audio: {
-      title: "audit_first_prompt_logic_05.mp3",
-      description: "tactics for generating rare insights while protecting accuracy.",
-      transcript: "blind trust is an attention trap. we drill the strict audit habit: using prompts to locate hidden linkages, then aggressively cross-referencing all AI answers against physical books."
-    },
-    video: {
-      title: "audit-first prompting frameworks",
-      chapters: ["00:00 - pushing prompt constraints", "04:12 - locating hallucinated data points", "09:50 - the physical validation loop"],
-      caption: "never blindly trust a computer's answer. we map prompt sequences and establish rigid verification drills."
-    },
-    slides: {
-      slidesData: [
-        "slide 1: prompt constraints. how to prevent generic outputs by feeding the system rigorous datasets.",
-        "slide 2: locating subtle hallucinations. teaching kids to find contradictions and false machine logic.",
-        "slide 3: real verification rules. matching automated text with reliable physical books or verified sources.",
-        "slide 4: spatial output. transforming drafts into analytical papers."
-      ]
-    },
-    document: {
-      title: "THE STRICT COGNITIVE AUDIT PROTOCOL",
-      body: "The standard use of AI tools creates passive, dependent students. To prevent this public tool trap, this workbook installs an 'audit-first' safety protocol. We outline prompt methodologies that force systems to generate counter-intuitive angles, while implementing strict guidelines to verify every output against hard real-world constraints before adopting it."
-    },
-    chart: {
-      title: "recursive validation feedback model",
-      nodes: ["advanced prompt query", "raw machine response", "rigorous audit checklist", "verified output"]
-    }
-  }
-];
+const LEARNING_PLAYBOOKS = [];
 
-const LearningPage = () => {
+const LearningPageOldUnused = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [activeFormat, setActiveFormat] = useState<"audio" | "video" | "slides" | "document" | "chart">("audio");
