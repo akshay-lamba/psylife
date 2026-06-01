@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Facebook, Instagram, Youtube } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -12,12 +13,17 @@ export const Footer = () => {
           </Link>
         </div>
 
-        {/* Social Link List */}
-        <div className="flex flex-wrap justify-center gap-8 text-[11px] lowercase text-[#8fa38c] font-mono tracking-widest z-10">
-          <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#a67958] transition-colors">x platform</a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#a67958] transition-colors">instagram</a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#a67958] transition-colors">tiktok</a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#a67958] transition-colors">youtube</a>
+        {/* Social Link List with Icons */}
+        <div className="flex justify-center items-center gap-6 text-[#8fa38c] z-10">
+          <a href="https://www.facebook.com/psylifeaus" target="_blank" rel="noopener noreferrer" aria-label="facebook" className="hover:text-[#a67958] transition-colors p-1">
+            <Facebook className="w-5 h-5 pointer-events-none" />
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="instagram" className="hover:text-[#a67958] transition-colors p-1">
+            <Instagram className="w-5 h-5 pointer-events-none" />
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="youtube" className="hover:text-[#a67958] transition-colors p-1">
+            <Youtube className="w-5 h-5 pointer-events-none" />
+          </a>
         </div>
 
         {/* Copyright */}
